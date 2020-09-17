@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ContentItem;
+use App\Content;
+
 
 class ContentItemsController extends Controller
 {
      // getでcontentitem/にアクセスされた場合
     public function index()
     {
+        return view('content.profile', ['user' => User::findOrFail($id)]);
     }
 
     // getでhello/contentitemにアクセスされた場合
