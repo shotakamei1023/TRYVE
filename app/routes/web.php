@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::resource('content', 'ContentsController');
 Route::post('/content/check', 'ContentsController@check');
 Route::get('/content/open', 'ContentsController@open');

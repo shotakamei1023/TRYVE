@@ -91,22 +91,6 @@
   !*** ./node_modules/axios/index.js ***!
   \*************************************/
 /*! no static exports found */
-<<<<<<< HEAD
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/var/www/html/node_modules/axios/index.js'");
-
-/***/ }),
-
-/***/ "./node_modules/lodash/lodash.js":
-/*!***************************************!*\
-  !*** ./node_modules/lodash/lodash.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/var/www/html/node_modules/lodash/lodash.js'");
-=======
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/lib/axios.js");
@@ -19336,7 +19320,6 @@ module.exports = function(module) {
 	return module;
 };
 
->>>>>>> d5eddca70c1e6b63099779fa5837da6d3db2b946
 
 /***/ }),
 
@@ -19390,11 +19373,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-<<<<<<< HEAD
-throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nModuleError: Module Error (from ./node_modules/resolve-url-loader/index.js):\nresolve-url-loader: loader misconfiguration\n  \"engine\" option is not valid\n    at Object.emitError (/var/www/html/node_modules/webpack/lib/NormalModule.js:173:6)\n    at handleAsError (/var/www/html/node_modules/resolve-url-loader/index.js:214:12)\n    at Object.resolveUrlLoader (/var/www/html/node_modules/resolve-url-loader/index.js:156:12)");
-=======
 throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nTypeError: text.forEach is not a function\n    at /var/www/html/node_modules/extract-text-webpack-plugin/dist/loader.js:145:16\n    at /var/www/html/node_modules/webpack/lib/Compiler.js:343:11\n    at /var/www/html/node_modules/webpack/lib/Compiler.js:681:15\n    at AsyncSeriesHook.eval [as callAsync] (eval at create (/var/www/html/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:22:1)\n    at AsyncSeriesHook.lazyCompileHook (/var/www/html/node_modules/tapable/lib/Hook.js:154:20)\n    at /var/www/html/node_modules/webpack/lib/Compiler.js:678:31\n    at AsyncSeriesHook.eval [as callAsync] (eval at create (/var/www/html/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:4:1)\n    at AsyncSeriesHook.lazyCompileHook (/var/www/html/node_modules/tapable/lib/Hook.js:154:20)\n    at /var/www/html/node_modules/webpack/lib/Compilation.js:1423:35\n    at AsyncSeriesHook.eval [as callAsync] (eval at create (/var/www/html/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:4:1)\n    at AsyncSeriesHook.lazyCompileHook (/var/www/html/node_modules/tapable/lib/Hook.js:154:20)\n    at /var/www/html/node_modules/webpack/lib/Compilation.js:1414:32\n    at AsyncSeriesHook.eval [as callAsync] (eval at create (/var/www/html/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:4:1)\n    at AsyncSeriesHook.lazyCompileHook (/var/www/html/node_modules/tapable/lib/Hook.js:154:20)\n    at /var/www/html/node_modules/webpack/lib/Compilation.js:1409:36\n    at AsyncSeriesHook.eval [as callAsync] (eval at create (/var/www/html/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:4:1)\n    at AsyncSeriesHook.lazyCompileHook (/var/www/html/node_modules/tapable/lib/Hook.js:154:20)\n    at /var/www/html/node_modules/webpack/lib/Compilation.js:1405:32\n    at AsyncSeriesHook.eval [as callAsync] (eval at create (/var/www/html/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:4:1)\n    at AsyncSeriesHook.lazyCompileHook (/var/www/html/node_modules/tapable/lib/Hook.js:154:20)\n    at Compilation.seal (/var/www/html/node_modules/webpack/lib/Compilation.js:1342:27)\n    at /var/www/html/node_modules/webpack/lib/Compiler.js:675:18\n    at /var/www/html/node_modules/webpack/lib/Compilation.js:1261:4\n    at AsyncSeriesHook.eval [as callAsync] (eval at create (/var/www/html/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:13:1)\n    at AsyncSeriesHook.lazyCompileHook (/var/www/html/node_modules/tapable/lib/Hook.js:154:20)\n    at Compilation.finish (/var/www/html/node_modules/webpack/lib/Compilation.js:1253:28)\n    at /var/www/html/node_modules/webpack/lib/Compiler.js:672:17\n    at eval (eval at create (/var/www/html/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:9:1)\n    at /var/www/html/node_modules/webpack/lib/Compilation.js:1185:12\n    at /var/www/html/node_modules/webpack/lib/Compilation.js:1097:9\n    at processTicksAndRejections (internal/process/task_queues.js:79:11)");
->>>>>>> d5eddca70c1e6b63099779fa5837da6d3db2b946
 
 /***/ }),
 

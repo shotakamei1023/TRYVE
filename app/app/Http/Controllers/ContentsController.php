@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Content;
 
-
 class ContentsController extends Controller
 {
     // getでcontent/にアクセスされた場合
