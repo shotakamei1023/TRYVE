@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('content', 'App\Controllers\ContentsController');
+Route::post('/content/check', 'UserController@check');
+Route::get('/content/open', 'UserController@open');
+
+Route::resource('contentitem', 'App\Controllers\ContentsController');
+Route::post('/contentitem/add', 'UserController@add');
+Route::post('/contentitem/insert', 'UserController@insert');
