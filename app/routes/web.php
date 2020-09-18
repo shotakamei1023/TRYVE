@@ -25,3 +25,6 @@ Route::get('/content/open', 'ContentsController@open');
 Route::resource('contentitem', 'ContentItemsController');
 Route::post('/contentitem/add', 'ContentItemsController@add');
 Route::post('/contentitem/insert', 'ContentItemsController@insert');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
