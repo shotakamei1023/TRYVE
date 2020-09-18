@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Content;
-use App\ContentItem;
 
 
 class ContentsController extends Controller
@@ -13,7 +12,17 @@ class ContentsController extends Controller
     public function index(Request $request)
     {
         $items = Content::all();
-        return view('content.index',['items' => $items]);
+        $param = ['items' => $items, 'title' => '' , 'address_first' => '' , 'price' => '' ];
+        return view('content.index',$param);
+    }
+
+    public function find(Request $request)
+    {
+        if ( isset ( $request['title'] ) ){
+        $items = Content::where('title',$request['title'])->get();
+        $param = ['items' => $items, 'title' => $request->input];
+        return view('content.index',$param);
+        }
     }
 
     // getでhello/contentにアクセスされた場合
