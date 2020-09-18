@@ -1,6 +1,8 @@
 <form action="/content" method="post">
 @csrf
 <input type="text" name="title" value="{{$title}}" placeholder="タイトル">
+<input type="text" name="address_first" value="{{$address_first}}" placeholder="都道府県">
+<input type="number" name="price" value="{{$price}}" placeholder="報酬">
 <input type="submit" value="find"> 
 </form>
 
