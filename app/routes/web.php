@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 Route::resource('content', 'ContentsController');
 //検索ボタンを押すとコントローラのindexメソッドを実行します
-Route::post('content','ContentsController@find');
+Route::post('content/find','ContentsController@find');
 Route::post('/content/check', 'ContentsController@check');
 Route::get('/content/open', 'ContentsController@open');
 

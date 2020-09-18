@@ -71,15 +71,40 @@ class ContentsController extends Controller
                     return view('content.index',$param);}
         
     }
-    public function create()
+    // getでcontent/createにアクセスされた場合
+    public function create(Request $request)
     {
-        
+        return view('content.create');
+    }
+
+    // postでcontent/checkにアクセスされた場合
+    public function check(Request $request)
+    {
+        $inputs = $request->all();
+
+        return view('content.check', ['inputs' => $inputs,]);
     }
 
     // postでcontent/にアクセスされた場合
-    public function store()
+    public function store(Request $request)
     {
+
+        //requestからactionを抽出する。actionが無ければbackを返す
+        $action = $request->input('action', 'back');
+
+        //入力画面に返す情報からactionは取り除く。
+        $inputs = $request->except('action');
+
         
+         if($action === 'submit') {
+
+            //  保存処理書く、owner_idに自分のid入れる
+
+        return view('content.index');
+        } else {
+        //戻る
+        return redirect()->action('ContentsController@create')->withInput($inputs);
+    }
     }
 
     // getでcontent/messageにアクセスされた場合
@@ -102,12 +127,6 @@ class ContentsController extends Controller
 
     // deleteでcontent/messageにアクセスされた場合
     public function destroy($message)
-    {
-        
-    }
-
-    // checkでcontent/messageにアクセスされた場合
-    public function check($message)
     {
         
     }
