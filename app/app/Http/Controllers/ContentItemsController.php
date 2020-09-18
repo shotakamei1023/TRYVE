@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ContentItem;
-use App\Content;
 
 
 class ContentItemsController extends Controller
