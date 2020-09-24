@@ -1,100 +1,60 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<h2>Google Map Test</h2>
+<input id="address" type="textbox" value="">
+<input type="button" value="検索" onClick="codeAddress()">
+<div id="latlngDisplay">ここに緯度、経緯が表示される</div>
+<div id="addressDisplay">ここに住所が表示される</div>
+<div id="addressURL">ここにURLが表示される</div>
+<div id="map"></div>
 
-        <title>Laravel</title>
+<style>
+#map{
+  height: 600px;
+  width: 600px;
+}
+</style>
+<script>
+        const latlngDis = document.getElementById('latlngDisplay');
+        const addressDis = document.getElementById('addressDisplay');
+        // let endData;
+    function initMap(){
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+  tokyo = {lat: 35.6803997, lng: 139.7690174}
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: tokyo,
+    zoom: 12,
+  });
 
-            .full-height {
-                height: 100vh;
-            }
+}
+function codeAddress(callback){
+  geocoder = new google.maps.Geocoder();
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+  inputAddress = document.getElementById('address').value;
 
-            .position-ref {
-                position: relative;
-            }
+  geocoder.geocode({ 'address': inputAddress}, function(results, status){
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      marker = new google.maps.Marker({
+        position: results[0].geometry.location,
+        map: map,
+      });
+    latlngDis.innerHTML = results[0].geometry.location;
+    const endData = latlngDis.innerHTML.split(',');
+    console.log(endData);
+    addressURL.innerHTML = "https://www.google.co.jp/maps/place/" + results[0].formatted_address.slice( 13 ) + "/@" + endData[0].slice( 1 ) + "," +endData[1].slice( 1, -1 ) +"," + "20z"
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+      geocoder.geocode({ 'location': marker.getPosition()}, function(results, status) {
+        if (status == "OK"){
+          addressDis.innerHTML = results[0].formatted_address;
+        } else {
+          alert("Geocode 取得に失敗しました：" + status);
+        }
+      });
+    } else {
+      alert("該当する結果がありませんでした：" + status);
+    }
+  });
+}
 
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApeoUq6ta-vcz7YtJRf7wiDcUPLr5g5Yw&callback=initMap" async defer></script>
