@@ -12,62 +12,62 @@ class ContentsController extends Controller
     public function index(Request $request)
     {
         $items = Content::all();
-        $param = ['items' => $items, 'title' => '' , 'address_first' => '' , 'price' => '' ];
+        $param = ['items' => $items, 'title' => '' , 'prefectures' => '' , 'price' => '' ];
         return view('content.index',$param);
     }
 
     public function find(Request $request)
     {
             //全部入力されていない時
-            if ( empty ( $request['title']) && empty ( $request['address_first']) && empty ( $request['price'])){
+            if ( empty ( $request['title']) && empty ( $request['prefectures']) && empty ( $request['price'])){
                         $items = Content::all();
-                        $param = ['items' => $items,'title' => $request->title,'address_first' => $request->address_first,'price' => $request->price];
+                        $param = ['items' => $items,'title' => $request->title,'prefectures' => $request->prefectures,'price' => $request->price];
                     return view('content.index',$param);}
 
             //titleだけが入力された時
-            if ( !empty ( $request['title']) && empty ( $request['address_first']) && empty ( $request['price'])){
+            if ( !empty ( $request['title']) && empty ( $request['prefectures']) && empty ( $request['price'])){
                         $items = Content::where('title','like','%'.$request['title'].'%')->get();
-                        $param = ['items' => $items,'title' => $request->title,'address_first' => $request->address_first,'price' => $request->price];
+                        $param = ['items' => $items,'title' => $request->title,'prefectures' => $request->prefectures,'price' => $request->price];
                     return view('content.index',$param);}
-            //address_firstだけが入力された時
-            if ( empty ( $request['title']) && !empty ( $request['address_first']) && empty ( $request['price'])){
-                        $items = Content::where('address_first','like','%'.$request['address_first'].'%')->get();
-                        $param = ['items' => $items,'title' => $request->title,'address_first' => $request->address_first,'price' => $request->price];
+            //prefecturesだけが入力された時
+            if ( empty ( $request['title']) && !empty ( $request['prefectures']) && empty ( $request['price'])){
+                        $items = Content::where('prefectures','like','%'.$request['prefectures'].'%')->get();
+                        $param = ['items' => $items,'title' => $request->title,'prefectures' => $request->prefectures,'price' => $request->price];
                         return view('content.index',$param);}
 
             //priceだけが入力された時
-            if ( empty ( $request['title']) && empty ( $request['address_first']) && !empty ( $request['price'])){
+            if ( empty ( $request['title']) && empty ( $request['prefectures']) && !empty ( $request['price'])){
                         $items = Content::where('price','like','%'.$request['price'].'%')->get();
-                        $param = ['items' => $items,'title' => $request->title,'address_first' => $request->address_first,'price' => $request->price];
+                        $param = ['items' => $items,'title' => $request->title,'prefectures' => $request->prefectures,'price' => $request->price];
                         return view('content.index',$param);}
                         
             //titleとpriceが入力された時
-            if ( !empty ( $request['title']) && empty ( $request['address_first']) && !empty ( $request['price'])){
+            if ( !empty ( $request['title']) && empty ( $request['prefectures']) && !empty ( $request['price'])){
                         $items = Content::where('title','like','%'.$request['title'].'%')
                             ->where('price','like','%'.$request['price'].'%')->get();
-                        $param = ['items' => $items,'title' => $request->title,'address_first' => $request->address_first,'price' => $request->price];
+                        $param = ['items' => $items,'title' => $request->title,'prefectures' => $request->prefectures,'price' => $request->price];
                         return view('content.index',$param);}
 
-            //titleとaddress_firstが入力された時
-            if ( !empty ( $request['title']) && !empty ( $request['address_first']) && empty ( $request['price'])){
+            //titleとprefecturesが入力された時
+            if ( !empty ( $request['title']) && !empty ( $request['prefectures']) && empty ( $request['price'])){
                         $items = Content::where('title','like','%'.$request['title'].'%')
-                            ->where('address_first','like','%'.$request['address_first'].'%')->get();
-                        $param = ['items' => $items,'title' => $request->title,'address_first' => $request->address_first,'price' => $request->price];
+                            ->where('prefectures','like','%'.$request['prefectures'].'%')->get();
+                        $param = ['items' => $items,'title' => $request->title,'prefectures' => $request->prefectures,'price' => $request->price];
                         return view('content.index',$param);}
 
-            //address_firstとpriceが入力された時
-            if ( empty ( $request['title']) && !empty ( $request['address_first']) && !empty ( $request['price'])){
-                    $items = Content::where('address_first','like','%'.$request['address_first'].'%')
+            //prefecturesとpriceが入力された時
+            if ( empty ( $request['title']) && !empty ( $request['prefectures']) && !empty ( $request['price'])){
+                    $items = Content::where('prefectures','like','%'.$request['prefectures'].'%')
                             ->where('price','like','%'.$request['price'].'%')->get();
-                    $param = ['items' => $items,'title' => $request->title,'address_first' => $request->address_first,'price' => $request->price];
+                    $param = ['items' => $items,'title' => $request->title,'prefectures' => $request->prefectures,'price' => $request->price];
                     return view('content.index',$param);}
 
-            //titleとaddress_firstとpriceが入力された時
-            if ( !empty ( $request['title']) && !empty ( $request['address_first']) && !empty ( $request['price'])){
+            //titleとprefecturesとpriceが入力された時
+            if ( !empty ( $request['title']) && !empty ( $request['prefectures']) && !empty ( $request['price'])){
                     $items = Content::where('title','like','%'.$request['title'].'%')
-                            ->where('address_first','like','%'.$request['address_first'].'%')
+                            ->where('prefectures','like','%'.$request['prefectures'].'%')
                             ->where('price','like','%'.$request['price'].'%')->get();
-                    $param = ['items' => $items,'title' => $request->title,'address_first' => $request->address_first,'price' => $request->price];
+                    $param = ['items' => $items,'title' => $request->title,'prefectures' => $request->prefectures,'price' => $request->price];
                     return view('content.index',$param);}
         
     }
@@ -108,9 +108,9 @@ class ContentsController extends Controller
     }
 
     // getでcontent/messageにアクセスされた場合
-    public function show($message)
+    public function show()
     {
-        
+        return view('content.show');
     }
 
     // getでcontent/message/editにアクセスされた場合
@@ -127,7 +127,7 @@ class ContentsController extends Controller
 
     // deleteでcontent/messageにアクセスされた場合
     public function destroy($message)
-    {
+     {
         
     }
 
