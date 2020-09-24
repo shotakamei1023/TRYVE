@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Content;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ContentRequest;
+
 
 
 class ContentsController extends Controller
@@ -86,7 +89,7 @@ class ContentsController extends Controller
     }
 
     // postでcontent/にアクセスされた場合
-    public function store(Request $request)
+    public function store(ContentRequest $request)
     {
 
         //requestからactionを抽出する。actionが無ければbackを返す
@@ -98,12 +101,18 @@ class ContentsController extends Controller
         
          if($action === 'submit') {
 
-            //  保存処理書く、owner_idに自分のid入れる
-
-        return view('content.index');
-        } else {
-        //戻る
-        return redirect()->action('ContentsController@create')->withInput($inputs);
+            $this->validate($request,Content::$rules);
+            $content = new Content;
+            $user = Auth::user();
+            $form = $request->all();
+            unset($form['_token']);
+            $content->fill($form);
+            $content->owner_id = $user->id;
+            $content->save();
+            return redirect('/content');
+            }else {
+            //戻る
+            return redirect()->action('ContentsController@create')->withInput($inputs);
     }
     }
 

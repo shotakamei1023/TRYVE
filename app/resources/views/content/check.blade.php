@@ -22,6 +22,7 @@
 </label>
 <div>{{ $inputs['gmap'] }}<input name="gmap" value="{{ $inputs['gmap'] }}" type="hidden"></div>
 
+
     <button>
         <input type="submit" name="action" value="back">
     </button>
