@@ -28,6 +28,5 @@
   display:none;
 }
 </style>
-
+@extends('layouts.apikey')
 <script src="{{ asset('/js/googlemap_api.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApeoUq6ta-vcz7YtJRf7wiDcUPLr5g5Yw&callback=initMap" async defer></script>
