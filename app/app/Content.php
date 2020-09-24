@@ -13,8 +13,8 @@ class Content extends Model
         return $this->belongsTo('App\User', 'owner_id');
         return $this->belongsTo('App\User', 'helper_id');
     }
+    
     protected $fillable = [
-        'title','address_first','price',
+        'title','prefectures','price','address','order','gmap','owner_id'
     ];
-
     }

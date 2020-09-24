@@ -2,6 +2,15 @@
 
 <h2>依頼作成画面</h2>
 
+@if($errors->any())
+<div>
+  <ul>
+    @foreach($errors->all() as $error)
+      <li>{{ $error }}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
 <form action="/content/check" method="post">
 @csrf
 <tr>
@@ -16,7 +25,7 @@
 <th><input type="submit" value="送信"></th>
 </tr>
 
-<div id="latlngDisplay">ここに緯度、経緯が表示される</div>
+<div id="latlngDisplay">{{-- ここに緯度、経緯が表示される --}}</div>
 <div id="map"></div>
 
 <style>
