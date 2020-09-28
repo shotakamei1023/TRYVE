@@ -1,17 +1,7 @@
-@section(`bootstrap`)
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>サンプルApp</title>
-  <link href="/css/all.css" rel="stylesheet">
-  <link href="/css/style.css" rel="stylesheet">
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@extends('layouts.base')
 
+@section('search')
 <h2>依頼検索画面</h2>
-
 <form action="/content/find" method="post">
 @csrf
 <input type="text" name="title" value="{{$title}}" placeholder="タイトル">
@@ -19,7 +9,9 @@
 <input type="number" name="price" value="{{$price}}" placeholder="報酬">
 <input type="submit" value="検索"> 
 </form>
+@endsection
 
+@section('content')
 {{ Auth::user()->name }}がログインしてます
 @foreach($items as $item)
 <table>
@@ -32,6 +24,8 @@
 <tr>
 </table>
 @endforeach
+@endsection
 
+@section('create')
 <button type="button" class="btn btn-success"><a href="{{ action('ContentsController@create') }}">依頼作成</a></button>
-@show
+@endsection
