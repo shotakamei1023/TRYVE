@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class ContentRequest extends FormRequest
 {
     //リダイレクトさせたいパス
-    protected $redirect = 'content/create';
+    protected $redirect = 'contents/create';
     
     /**
      * Determine if the user is authorized to make this request.

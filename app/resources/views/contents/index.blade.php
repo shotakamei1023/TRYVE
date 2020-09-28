@@ -1,7 +1,7 @@
-@extends('layouts.bootstrap')
+@extends('layouts.base')
 
+@section('search')
 <h2>依頼検索画面</h2>
-
 <form action="/content/find" method="post">
 @csrf
 <input type="text" name="title" value="{{$title}}" placeholder="タイトル">
@@ -9,7 +9,9 @@
 <input type="number" name="price" value="{{$price}}" placeholder="報酬">
 <input type="submit" value="検索"> 
 </form>
+@endsection
 
+@section('content')
 {{ Auth::user()->name }}がログインしてます
 @foreach($items as $item)
 <table>
@@ -22,5 +24,8 @@
 <tr>
 </table>
 @endforeach
+@endsection
 
+@section('create')
 <button type="button" class="btn btn-success"><a href="{{ action('ContentsController@create') }}">依頼作成</a></button>
+@endsection

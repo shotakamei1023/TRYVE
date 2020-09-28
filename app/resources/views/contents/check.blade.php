@@ -1,8 +1,9 @@
-@extends('layouts.bootstrap')
+@extends('layouts.base')
 
+@section('content')
 <h2>確認画面</h2>
 
-<form action="/content" method="post">
+<form action="/contents/create/store" method="post">
 @csrf
 <label>タイトル</label>
 <div>{{ $inputs['title'] }}<input name="title" value="{{ $inputs['title'] }}" type="hidden"></div>
@@ -29,3 +30,4 @@
     <button>
         <input type="submit" name="action" value="submit">
     </button>
+@endsection

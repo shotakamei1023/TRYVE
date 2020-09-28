@@ -1,7 +1,7 @@
-@extends('layouts.bootstrap')
+@extends('layouts.base')
 
+@section('content')
 <h2>依頼作成画面</h2>
-
 @if($errors->any())
 <div>
   <ul>
@@ -11,7 +11,7 @@
   </ul>
 </div>
 @endif
-<form action="/content/check" method="post">
+<form action="/contents/create/check" method="post">
 @csrf
 <tr>
 <th><input type="text" name="title" value="{{old('title')}}" placeholder="タイトル"></th>
@@ -37,5 +37,9 @@
   display:none;
 }
 </style>
-@extends('layouts.apikey')
+
 <script src="{{ asset('/js/googlemap_api.js') }}"></script>
+<script src="{{ asset('/js/apikey.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApeoUq6ta-vcz7YtJRf7wiDcUPLr5g5Yw&callback=initMap" async
+  defer></script>
+@endsection
