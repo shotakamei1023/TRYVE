@@ -12,7 +12,6 @@
 @endsection
 
 @section('content')
-{{ Auth::user()->name }}がログインしてます
 @foreach($items as $item)
 <table>
 <tr>
@@ -21,11 +20,13 @@
         <td>{{$item->price}}</td>
         <td>{{$item->user->name}}</td>
         <td>{{DB::table('content_items')->where('content_id','=',$item->id)->count()}}</td>
+        <td><button type="button" class="btn btn-info" ><a href="{{ route('content.show', ['id' => $item->id]) }}"><font color=white>詳細</font></a></button></td>
+        <td><button type="button" class="btn btn-primary"><a href="{{ route('mytask.post', ['id' => $item->id]) }}"><font color=white>代行申請する</font></a></button></td>
 <tr>
 </table>
 @endforeach
 @endsection
 
 @section('create')
-<button type="button" class="btn btn-success"><a href="{{ action('ContentsController@create') }}">依頼作成</a></button>
+<button type="button" class="btn btn-success"><a href="{{ action('ContentsController@create') }}"><font color=white>依頼作成</font></a></button>
 @endsection
