@@ -129,11 +129,12 @@ class ContentsController extends Controller
         $content = Content::find($request->id);
         $user = Auth::user();
         if($content->owner_id == $user->id){
-             return redirect()->action('ContentsController@index')->with('flash_message', '自分が作成した依頼に申請することはできません。');
+            return redirect()->action('ContentsController@index')->with('flash_message', '自分が作成した依頼に申請することはできません。');
         }
         else
         $content->update(['content_status'=>2,'report_status'=>2]);
         $contentitem = new ContentItem;
         $contentitem->fill(['user_id' => $user->id,'content_id' => $request->id])->save();
+            return redirect()->action('ContentsController@index')->with('flash_message', '代行申請しました。');
     }
 }

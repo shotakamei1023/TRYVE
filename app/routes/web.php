@@ -33,6 +33,7 @@ Route::patch('/mypage/contents/{id}/update', 'MyContentsController@update')->nam
 Route::delete('/mypage/contents/{id}/destroy', 'MyContentsController@destroy')->name('mycontent.destroy');
 Route::get('/mypage/tasks', 'MyTasksController@index')->name('mytask.index');
 Route::get('/mypage/tasks/load/{id}/', 'MyTasksController@load')->name('mytask.load');
+Route::patch('/mypage/tasks/load/{id}/permit', 'MyTasksController@permit')->name('mytask.permit');
 Route::get('/mypage/tasks/{id}/revue', 'MyTasksController@show')->name('mytask.show');
 Route::post('/mypage/tasks/{id}/revue', 'MyTasksController@store')->name('mytask.store');
 Route::get('/mypage/tasks{id}/', 'MyTasksController@edit')->name('mytask.edit');
