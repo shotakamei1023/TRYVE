@@ -11,11 +11,12 @@ class MyTasksController extends Controller
     // getで/mypage/tasksにアクセスされた場合
     public function index()
     {
-
-        }
+    }
     // getで/mypage/tasks{$id}/にアクセスされた場合
-    public function load()
+    public function load(Request $request)
     {
+        $contents = ContentItem::where('content_id', $request->id)->get();
+        return view('mytasks.load',compact('contents'));    
     }
     // getで/mypage/tasks/{$id}/revueにアクセスされた場合
     public function show()
@@ -36,5 +37,13 @@ class MyTasksController extends Controller
     // deleteで/mypage/tasks/{$id}/destroyにアクセスされた場合
     public function destroy()
     {
+    }
+    // patchで/mypage/tasks/load/{$id}/permitにアクセスされた場合
+    public function permit(Request $request)
+    {
+        $content = Content::find($request->id);
+        $contentitem = ContentItem::where('content_id', $request->id)->first();
+        $content->update(['content_status'=>3,'report_status'=>3,'helper_id'=>$contentitem->user_id]);
+        return redirect()->action('MyContentsController@index');
     }
 }

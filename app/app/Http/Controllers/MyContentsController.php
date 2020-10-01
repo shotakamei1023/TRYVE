@@ -12,9 +12,8 @@ class MyContentsController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $items = Content::where('owner_id', $user->id)->get();
-        $param = ['items' => $items];
-        return view('mycontents.index',$param);
+        $contents = Content::where('owner_id', $user->id)->get();
+        return view('mycontents.index',compact('contents'));
     }
     // getで/mypage/contents/{$id}/editにアクセスされた場合
     public function edit(Request $request)
@@ -24,12 +23,19 @@ class MyContentsController extends Controller
     }
 
     // putで/mypage/contents/{$id}/updateにアクセスされた場合
-    public function updata()
+    public function update(Request $request)
     {
+        $content = Content::find($request->id);
+        $form = $request->all();
+        unset($form['_token']);
+        $content->fill($form)->save();
+        return redirect()->action('MyContentsController@index');
     }
 
     // deleteで/mypage/contents/{$id}/destroyにアクセスされた場合
-    public function destroy()
+    public function destroy(Request $request)
     {
+        $content = Content::find($request->id)->delete();
+        return redirect()->action('MyContentsController@index');
     }
 }

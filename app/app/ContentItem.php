@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContentItem extends Model
 {
-        public function belongs()
+        public function user()
     {
         return $this->belongsTo('App\User');
+    }
+        public function content()
+    {
         return $this->belongsTo('App\Content');
     }
     protected $fillable = [
