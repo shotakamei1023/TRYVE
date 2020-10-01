@@ -32,7 +32,7 @@ class ContentRequest extends FormRequest
         'price' => 'required',
         'address' => 'required',
         'order' => 'required',
-        'gmap' => 'required'
+        'gmap' => 'required',
         ];
     }
 }

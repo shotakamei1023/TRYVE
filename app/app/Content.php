@@ -15,6 +15,6 @@ class Content extends Model
     }
     
     protected $fillable = [
-        'title','prefectures','price','address','order','gmap','owner_id'
+        'title','prefectures','price','address','order','gmap','owner_id','content_status','report_status'
     ];
     }
