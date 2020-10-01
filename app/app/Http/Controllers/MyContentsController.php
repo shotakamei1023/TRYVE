@@ -17,8 +17,10 @@ class MyContentsController extends Controller
         return view('mycontents.index',$param);
     }
     // getで/mypage/contents/{$id}/editにアクセスされた場合
-    public function edit()
+    public function edit(Request $request)
     {
+        $content = Content::find($request->id);
+        return view('mycontents.edit',compact('content'));
     }
 
     // putで/mypage/contents/{$id}/updateにアクセスされた場合

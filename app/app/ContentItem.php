@@ -11,4 +11,7 @@ class ContentItem extends Model
         return $this->belongsTo('App\User');
         return $this->belongsTo('App\Content');
     }
+    protected $fillable = [
+        'user_id','content_id'
+    ];
 }

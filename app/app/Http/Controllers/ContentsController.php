@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Content;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ContentRequest;
+use App\ContentItem;
 
 
 
@@ -115,10 +116,24 @@ class ContentsController extends Controller
     }
     }
 
-    // getで/contents/showにアクセスされた場合
-    public function show()
+    // getで/contents/show/{$id}/にアクセスされた場合
+    public function show(Request $request)
     {
+        $content = Content::find($request->id);
+        return view('contents.show',compact('content'));
     }
 
-
+    // postで/contents/post/{$id}/にアクセスされた場合
+    public function post(Request $request)
+    {
+        $content = Content::find($request->id);
+        $user = Auth::user();
+        if($content->owner_id == $user->id){
+             return redirect()->action('ContentsController@index')->with('flash_message', '自分が作成した依頼に申請することはできません。');
+        }
+        else
+        $content->update(['content_status'=>2,'report_status'=>2]);
+        $contentitem = new ContentItem;
+        $contentitem->fill(['user_id' => $user->id,'content_id' => $request->id])->save();
+    }
 }
