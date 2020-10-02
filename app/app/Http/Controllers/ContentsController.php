@@ -128,8 +128,13 @@ class ContentsController extends Controller
     {
         $content = Content::find($request->id);
         $user = Auth::user();
+        $contentitem_query = ContentItem::where('user_id',$user->id)->where('content_id',$content->id)->get();
+        // var_dump($contentitem_query);
         if($content->owner_id == $user->id){
             return redirect()->action('ContentsController@index')->with('flash_message', '自分が作成した依頼に申請することはできません。');
+        }
+        elseif(isset($contentitem_query[0])){
+                        return redirect()->action('ContentsController@index')->with('flash_message', '代行申請は一つの依頼に一度しかできません。');
         }
         else
         $content->update(['content_status'=>2,'report_status'=>2]);

@@ -14,20 +14,20 @@
   {{-- header --}}
   <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{{ route('content.index') }}">Navbar</a>
+  <a class="navbar-brand" href="{{ route('home') }}">トップページ</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav" >
     <ul class="navbar-nav" >
-      <li class="nav-item active">
-        <a class="nav-link" 　a href="{{ route('mycontent.index') }}">代行作成一覧</a>
+      <li class="nav-item">
+        <a class="nav-item nav-link active" href="{{ route('content.index') }}">代行依頼検索</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" 　href="#">代行依頼検索</a>
+        <a class="nav-item nav-link active" href="{{ route('mycontent.index') }}">依頼作成一覧</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">代行申請一覧</a>
+        <a class="nav-item nav-link active" href="{{ route('mytask.index') }}">代行申請一覧</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">マイページ</a>

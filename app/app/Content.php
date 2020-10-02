@@ -11,9 +11,12 @@ class Content extends Model
 {
     use SoftDeletes;
     
-        public function user()
+        public function owner()
     {
         return $this->belongsTo('App\User', 'owner_id');
+    }
+    public function helper()
+    {
         return $this->belongsTo('App\User', 'helper_id');
     }
 
@@ -23,6 +26,6 @@ class Content extends Model
     }
     
     protected $fillable = [
-        'title','prefectures','price','address','order','gmap','owner_id','helper_id','content_status','report_status'
+        'title','prefectures','price','address','order','gmap','owner_id','helper_id','content_status','report_status','report','value'
     ];
     }

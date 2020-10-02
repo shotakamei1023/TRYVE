@@ -38,4 +38,37 @@ class MyContentsController extends Controller
         $content = Content::find($request->id)->delete();
         return redirect()->action('MyContentsController@index');
     }
+    ///mypage/tasks/{$id}/revueにアクセスされた場合
+    public function revue(Request $request)
+    {
+        $content = Content::find($request->id);
+        return view('mycontents.revue',compact('content'));
+    }
+    ///mypage/tasks/{$id}/revue/storeにアクセスされた場合
+    public function store(Request $request)
+    {
+        $content = Content::find($request->id);
+        $content->update(['value'=>$request->value]);
+        return redirect()->action('MyContentsController@index');
+    }
+    ///mypage/tasks/{$id}/revue/showにアクセスされた場合
+    public function show(Request $request)
+    {
+        $content = Content::find($request->id);
+        return view('mycontents.show',compact('content'));
+    }
+    // getで/mypage/contents/{$id}/helperにアクセスされた場合
+    public function load(Request $request)
+    {
+        $contents = ContentItem::where('content_id', $request->id)->get();
+        return view('mytasks.load',compact('contents'));    
+    }
+    // patchで/mypage/contents/{$id}/helper/permitにアクセスされた場合
+    public function permit(Request $request)
+    {
+        $content = Content::find($request->id);
+        $contentitem = ContentItem::where('content_id', $request->id)->first();
+        $content->update(['content_status'=>3,'report_status'=>3,'helper_id'=>$contentitem->user_id]);
+        return redirect()->action('MyContentsController@index');
+    }
 }
