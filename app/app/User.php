@@ -14,6 +14,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Content', 'owner_id');
         return $this->hasMany('App\Content', 'helper_id');
     }
+    
+
     public function contentitem()
     {
         return $this->hasMany('App\ContentItem');

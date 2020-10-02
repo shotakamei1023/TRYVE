@@ -31,11 +31,12 @@ Route::get('/mypage/contents', 'MyContentsController@index')->name('mycontent.in
 Route::get('/mypage/contents/{id}/edit', 'MyContentsController@edit')->name('mycontent.edit');
 Route::patch('/mypage/contents/{id}/update', 'MyContentsController@update')->name('mycontent.update');
 Route::delete('/mypage/contents/{id}/destroy', 'MyContentsController@destroy')->name('mycontent.destroy');
+Route::get('/mypage/contents/{id}/revue', 'MyContentsController@revue')->name('mycontent.revue');
+Route::patch('/mypage/contents/{id}/revue/store', 'MyContentsController@store')->name('mycontent.store');
+Route::get('/mypage/contents/{id}/revue/show', 'MyContentsController@show')->name('mycontent.show');
+Route::get('/mypage/contents/{$id}/helper', 'MyTasksController@load')->name('mycontent.load');
+Route::patch('/mypage/contents/{$id}/helper/permit', 'MyTasksController@permit')->name('mycontent.permit');
 Route::get('/mypage/tasks', 'MyTasksController@index')->name('mytask.index');
-Route::get('/mypage/tasks/load/{id}/', 'MyTasksController@load')->name('mytask.load');
-Route::patch('/mypage/tasks/load/{id}/permit', 'MyTasksController@permit')->name('mytask.permit');
-Route::get('/mypage/tasks/{id}/revue', 'MyTasksController@show')->name('mytask.show');
-Route::post('/mypage/tasks/{id}/revue', 'MyTasksController@store')->name('mytask.store');
 Route::get('/mypage/tasks{id}/', 'MyTasksController@edit')->name('mytask.edit');
-Route::post('/mypage/tasks/{id}/revue/', 'MyTasksController@submit')->name('mytask.submit');
+Route::patch('/mypage/tasks/{id}/revue/', 'MyTasksController@submit')->name('mytask.submit');
 Route::delete('/mypage/tasks/{id}/destroy', 'MyTasksController@destroy')->name('mytask.destroy');
