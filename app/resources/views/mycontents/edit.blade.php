@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <h2>依頼編集画面</h2>
 
 <form action="{{ route('mycontent.update', ['id' => $content->id]) }}" method="post">
@@ -17,7 +20,7 @@
 
 <div id="latlngDisplay">{{-- ここに緯度、経緯が表示される --}}</div>
 <div id="map"></div>
-
+@endsection
 <style>
 #map{
   height: 600px;
