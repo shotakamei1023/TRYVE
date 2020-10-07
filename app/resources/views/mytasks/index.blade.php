@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.app')
 
 @section('content')
 <tr><th>依頼ID</th><th>依頼名</th><th>依頼者</th><th>ステータス</th></tr>

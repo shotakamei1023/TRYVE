@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.app')
 
 @section('content')
 <form action="{{ route('mycontent.store', ['id' => $content->id]) }}" method="post">

@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('top');
-});
+Route::get('/', 'HomeController@index')->name('home.index');
+
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/mypage', 'UsersController@index')->name('user.index');
+Route::get('/mypage/edit', 'UsersController@edit')->name('user.edit');
+Route::patch('/mypage/update', 'UsersController@update')->name('user.update');
 
 
 Route::get('/contents', 'ContentsController@index')->name('content.index');
