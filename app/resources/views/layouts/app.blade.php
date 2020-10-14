@@ -10,16 +10,16 @@
     <title>{{ config('app.name', 'TRYVE') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('/assets/js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/all.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
 
 </head>
 <body>
