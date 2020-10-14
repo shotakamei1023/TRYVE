@@ -1,0 +1,58 @@
+version: '3.7'
+services:
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    ports:
+      -  8000:80
+      -  8443:443
+    volumes:
+      -  ./nginx/conf.d:/etc/nginx/conf.d
+      -  ./app:/var/www/html
+      -  /home/schoo/schoo_infra_settings/nginx/ssl/schoo.jp:/etc/nginx/ssl/
+    working_dir: /var/www/html
+
+  php:
+    build: ./php
+    container_name: php
+    volumes:
+      - ./app:/var/www/html
+      # - ./php/php.ini:/usr/local/etc/php/php.ini
+    working_dir: /var/www/html
+
+  composer:
+    image: composer:latest
+    container_name: composer
+    volumes:
+      - ./app:/var/www/html
+    working_dir: /var/www/html
+
+
+  node:
+    image: node:lts
+    container_name: node
+    tty: true
+    volumes:
+      - ./app:/var/www/html
+    working_dir: /var/www/html
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      -  "3307:3306"
+    volumes:
+      -  ./mysql/database:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql/sql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      TZ: 'Asia/Tokyo'
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
