@@ -10,7 +10,6 @@ services:
     volumes:
       -  ./nginx/conf.d:/etc/nginx/conf.d
       -  ./app:/var/www/html
-      # -  /home/schoo/schoo_infra_settings/nginx/ssl/schoo.jp:/etc/nginx/ssl/
     working_dir: /var/www/html
 
   php:
