@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'TRYVE') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('/assets/js/app.js') }}" defer></script>
+    <script src="{{ asset('/assets/js/app02.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -23,7 +23,6 @@
 
 </head>
 <body>
-    <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" >
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">TRYVE</a>
@@ -93,6 +92,5 @@
             {{-- 依頼作成 --}}
             @yield('create')
         </main>
-    </div>
 </body>
 </html>

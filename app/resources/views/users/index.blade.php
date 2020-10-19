@@ -22,6 +22,7 @@
   width: 100%;
   height: 100%;
   background-color:#FFD800;
+  overflow: hidden;
 }
 #title{
   margin-left:20%;
@@ -29,6 +30,7 @@
   font-weight: bold; 
   border-left: 9px solid #04A0BB;
   padding-left: 20px;
+  margin-top: 5%;
 }
 #name{
   font-size: 50px;
