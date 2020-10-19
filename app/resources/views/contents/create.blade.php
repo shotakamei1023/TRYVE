@@ -38,8 +38,8 @@
 }
 </style>
 
-<script src="{{ asset('/js/googlemap_api.js') }}"></script>
-<script src="{{ asset('/js/apikey.js') }}"></script>
+<script src="{{ asset('/assets/js/googlemap_api.js') }}"></script>
+<script src="{{ asset('/assets/js/apikey.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApeoUq6ta-vcz7YtJRf7wiDcUPLr5g5Yw&callback=initMap" async
   defer></script>
 @endsection
