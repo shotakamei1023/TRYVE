@@ -2,12 +2,13 @@ version: '3.7'
 services:
 
   nginx:
-    image: nginx:alpine
+    image: nginx:stable-alpine
     container_name: nginx
     ports:
       -  80:80
-¥    volumes:
+    volumes:
       -  ./nginx/conf.d:/etc/nginx/conf.d
+      -  ./app:/var/www/html
     working_dir: /var/www/html
 
   php:
