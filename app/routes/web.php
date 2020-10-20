@@ -36,8 +36,8 @@ Route::delete('/mypage/contents/{id}/destroy', 'MyContentsController@destroy')->
 Route::get('/mypage/contents/{id}/revue', 'MyContentsController@revue')->name('mycontent.revue');
 Route::patch('/mypage/contents/{id}/revue/store', 'MyContentsController@store')->name('mycontent.store');
 Route::get('/mypage/contents/{id}/revue/show', 'MyContentsController@show')->name('mycontent.show');
-Route::get('/mypage/contents/{$id}/helper', 'MyTasksController@load')->name('mycontent.load');
-Route::patch('/mypage/contents/{$id}/helper/permit', 'MyTasksController@permit')->name('mycontent.permit');
+Route::get('/mypage/contents/{id}/helper', 'MyContentsController@load')->name('mycontent.load');
+Route::patch('/mypage/contents/{id}/helper/permit', 'MyContentsController@permit')->name('mycontent.permit');
 Route::get('/mypage/tasks', 'MyTasksController@index')->name('mytask.index');
 Route::get('/mypage/tasks{id}/', 'MyTasksController@edit')->name('mytask.edit');
 Route::patch('/mypage/tasks/{id}/revue/', 'MyTasksController@submit')->name('mytask.submit');

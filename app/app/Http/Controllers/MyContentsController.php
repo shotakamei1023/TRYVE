@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Content;
+use App\ContentItem;
 use Illuminate\Support\Facades\Auth;
 
 class MyContentsController extends Controller
@@ -65,7 +66,7 @@ public function __construct()
     public function load(Request $request)
     {
         $contents = ContentItem::where('content_id', $request->id)->get();
-        return view('mytasks.load',compact('contents'));    
+        return view('mycontents.load',compact('contents'));    
     }
     // patchで/mypage/contents/{$id}/helper/permitにアクセスされた場合
     public function permit(Request $request)
