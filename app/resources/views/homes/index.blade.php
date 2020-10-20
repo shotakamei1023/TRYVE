@@ -10,8 +10,8 @@
 <section>
   <div id="top_left">
     <img id="logo" src="{{ asset('/assets/images/logo.png') }}" alt="ロゴ">
-    <button type="button" id='top_button1'>デート代行を依頼する方</button>
-    <button type="button" id='top_button2'>デート代行を依頼したい方</button>
+    <button type="button" onclick="location.href='{{ route('content.create') }}'" id='top_button1'>デート代行を依頼する方</button>
+    <button type="button" onclick="location.href='{{ route('content.index') }}'" id='top_button2'>デート代行を請け負う方</button>
   </div>
   <div id="top_right">
     <img id="ring" src="{{ asset('/assets/images/ring1.png') }}" alt="リング">
@@ -40,11 +40,14 @@
     新着の依頼
   </div>
   <div id="contents">
-  <div id="contents_item">タイトル1</div>
-  <div id="contents_item">タイトル2</div>
-  <div id="contents_item">タイトル3</div>
+  @foreach($contents as $content)
+  <div id="contents_body">
+  <p id="contents_item">{{$content->title}}</p>
+  <p id="contents_item"><button type="button" onclick="location.href='{{ route('content.show', ['id' => $content->id]) }}'" id='contents_button'>詳細</button></p>
   </div>
-  <button type="button" id="centre_button">もっと見る</button>
+  @endforeach
+  </div>
+  <button type="button" onclick="location.href='{{ route('content.index') }}'" id="centre_button">もっと見る</button>
 </section>
 <section>
   <div id=bottom_messages>
@@ -65,8 +68,8 @@
     </div>
     </div>
     <div id="bottom_buttons">
-    <button type="button" id='bottom_button1'>デート代行を依頼する方</button>
-    <button type="button" id='bottom_button2'>デート代行を依頼したい方</button>
+    <button type="button" onclick="location.href='{{ route('content.create') }}'" id='bottom_button1'>デート代行を依頼する方</button>
+    <button type="button" onclick="location.href='{{ route('content.index') }}'" id='bottom_button2'>デート代行を請け負う方</button>
     <div>
   </div>
 </section>
@@ -180,14 +183,32 @@
     border: none;  
     font-weight: bold; 
   }
-  #contents_item{
-    border: 2px solid;
+  #contents{
+    padding: 2.5% 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 45vh;
+  }
+  #contents_body{
+    border: 5px solid;
     border-radius: 30px;
     border-color: #04A0BB;
-    margin: 20px auto;
-    width: 80%;
-    font-size: 30px;
+    width: 30%;
+  }
+  #contents_item{
+    margin: 50px auto;
+    font-size: 40px;
     text-align: center;
+  }
+  #contents_button{
+    border: solid 5px #FFD800;
+    border-radius: 80px;
+    background-color: white;
+    width: 35%;
+    height: 7vh;
+    font-size: 24px;
+    font-weight: bold; 
   }
 
   /* section4 */
