@@ -12,6 +12,10 @@ use App\ContentItem;
 
 class ContentsController extends Controller
 {
+public function __construct()
+{
+    $this->middleware('auth');
+}
     // getでcontents/にアクセスされた場合
     public function index(Request $request)
     {

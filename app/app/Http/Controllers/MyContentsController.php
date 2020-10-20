@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class MyContentsController extends Controller
 {
+public function __construct()
+{
+    $this->middleware('auth');
+}
     // getで/mypage/contentsにアクセスされた場合
     public function index()
     {
