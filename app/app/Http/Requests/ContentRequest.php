@@ -33,6 +33,7 @@ class ContentRequest extends FormRequest
         'address' => 'required',
         'order' => 'required',
         'gmap' => 'required',
+        'placename' => 'required',
         ];
     }
 }

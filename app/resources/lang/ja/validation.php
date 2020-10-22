@@ -160,7 +160,8 @@ return [
         'price' => '報酬',
         'address' => '依頼先の住所or施設名',
         'order' => '依頼内容',
-        'gmap' => '地図URLの取得は'
+        'gmap' => '住所の情報の取得',
+        'placename' => '地名'
     ],
 
 ];

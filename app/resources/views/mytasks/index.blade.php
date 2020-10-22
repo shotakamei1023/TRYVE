@@ -24,6 +24,7 @@
     <tr>
         <th scope="col">依頼タイトル</th>
         <th scope="col">依頼者名</th>
+        <th scope="col">申請日時</th>
         <th scope="col">ステータス</th>
         <th scope="col"></th>
         <th scope="col"></th>
@@ -34,9 +35,10 @@
     <tr>
         <th scope="row"><a href="{{ route('content.show', ['id' => $contentitem->content->id]) }}"><font color=black>{{$contentitem->content->title}}</font></a></th>
         <td>{{$contentitem->content->owner->name}}さん</td>
+        <td>{{$contentitem->created_at->format('Y/m/d')}}</td>
         @if($contentitem->content->helper_id == null)
                 <td>{{$contentitem->content->report_text}}</td>
-                <td><form method="post" action="{{ route('mytask.destroy', ['id' => $contentitem->id]) }}">@method('DELETE')@csrf<input type="submit" value="削除" ></form></td>
+                <td><form method="post" action="{{ route('mytask.destroy', ['id' => $contentitem->id]) }}">@method('DELETE')@csrf<input class='btn btn-danger' type="submit" value="削除" ></form></td>
                 <td></td>
         @elseif($contentitem->content->helper_id == Auth::user()->id && $contentitem->content->report_status == 3)
                 <td>{{$contentitem->content->report_text}}</td>

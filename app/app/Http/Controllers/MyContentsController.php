@@ -17,7 +17,7 @@ public function __construct()
     public function index()
     {
         $user = Auth::user();
-        $contents = Content::where('owner_id', $user->id)->paginate(5);
+        $contents = Content::where('owner_id', $user->id)->latest()->paginate(5);
         $param = ['contents' => $contents, 'content_status' => '' ];
         return view('mycontents.index',$param);
     }

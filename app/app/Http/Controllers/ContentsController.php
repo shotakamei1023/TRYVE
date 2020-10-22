@@ -14,11 +14,15 @@ use DB;
 
 class ContentsController extends Controller
 {
+public function __construct()
+{
+    $this->middleware('auth');
+}
 
     // getでcontents/にアクセスされた場合
     public function index(Request $request)
     {
-        $contents = Content::whereNull('helper_id')->paginate(5);
+        $contents = Content::whereNull('helper_id')->latest()->paginate(5);
         $param = ['contents' => $contents, 'title' => '' , 'prefectures' => '' , 'price' => '' ];
         return view('contents.index',$param);
     }
@@ -97,13 +101,13 @@ class ContentsController extends Controller
     {
 
         //requestからactionを抽出する。actionが無ければbackを返す
-        $action = $request->input('action', 'back');
+        $action = $request->input('action', '戻る');
 
         //入力画面に返す情報からactionは取り除く。
         $inputs = $request->except('action');
 
         
-         if($action === 'submit') {
+         if($action === '送信する') {
 
             $content = new Content;
             $user = Auth::user();
@@ -112,7 +116,7 @@ class ContentsController extends Controller
             $content->fill($form);
             $content->owner_id = $user->id;
             $content->save();
-            return redirect('/contents');
+            return redirect()->action('ContentsController@index')->with('msg_success', '依頼作成が完了しました');
             }else {
             //戻る
             return redirect()->action('ContentsController@create')->withInput($inputs);

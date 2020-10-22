@@ -12,7 +12,7 @@ class MyTasksController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $contentitems = ContentItem::where('user_id', $user->id)->paginate(5);
+        $contentitems = ContentItem::where('user_id', $user->id)->latest()->paginate(5);
         $param = ['contentitems' => $contentitems, 'report_status' => ''];
         return view('mytasks.index',$param);
     }
