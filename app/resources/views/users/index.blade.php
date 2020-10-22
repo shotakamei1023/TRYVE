@@ -9,7 +9,11 @@
     {{ Auth::user()->name }}
   </div>
   <div id="message">
-    あなたのデート代行評価は3.0です。
+    @if($avg == null)
+    あなたの代行評価はありません
+    @else
+    あなたの代行評価は{{$avg}}です。
+    @endif
   </div>
   <div id="link_box">
     <a href="{{ route('user.edit') }}" id="link">アカウント登録情報変更</a>
