@@ -62,9 +62,21 @@ public function __construct()
     ///mypage/tasks/{$id}/revue/storeにアクセスされた場合
     public function store(Request $request)
     {
-        $content = Content::find($request->id);
-        $content->update(['value'=>$request->value]);
-        return redirect()->action('MyContentsController@index');
+        //requestからactionを抽出する。actionが無ければbackを返す
+        $action = $request->input('action', '戻る');
+
+        //入力画面に返す情報からactionは取り除く。
+        $inputs = $request->except('action');
+
+        
+         if($action === 'レポートの評価をする') {
+            $content = Content::find($request->id);
+            $content->update(['value'=>$request->value]);
+            return redirect()->action('MyContentsController@index')->with('msg_success', '代行の評価が完了しました');
+            }else {
+            //戻る
+            return redirect()->action('MyContentsController@index');
+            }
     }
     ///mypage/tasks/{$id}/revue/showにアクセスされた場合
     public function show(Request $request)

@@ -1,15 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-@foreach($contentitems as $contentitem)
-<table>
-<tr>
-        <td>{{$contentitem->user->id}}</td>
+<h3>依頼者リスト</h3>
+<table class="table table-hover">
+  <thead class="thead-light">
+    <tr>
+        <th scope="col">依頼者ID</th>
+        <th scope="col">ステータス</th>
+        <th scope="col">申請日時</th>
+        <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+        @foreach($contentitems as $contentitem)
+    <tr>
+        <th scope="row">{{$contentitem->user->id}}</th>
         <td>{{$contentitem->user->name}}</td>
-        <? var_dump($contentitem->id); ?>
-        <td><form method="post" action="{{ route('mycontent.permit', ['id' => $contentitem->id]) }}">@method('PATCH')@csrf<input type="submit" value="お願いする" ></form></td>
-<tr>
+        <td>{{$contentitem->content->created_at}}</td>
+        <td><form method="post" action="{{ route('mycontent.permit', ['id' => $contentitem->id]) }}">@method('PATCH')@csrf<input class='btn btn-primary' type="submit" value="デート代行をお願いする" ></form></td>
+    </tr>
+        @endforeach
+  </tbody>
 </table>
-@endforeach
 @endsection
 
