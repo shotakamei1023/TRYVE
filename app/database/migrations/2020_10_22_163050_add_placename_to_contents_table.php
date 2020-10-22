@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeContentsTableColumn extends Migration
+class AddPlacenameToContentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,7 @@ class ChangeContentsTableColumn extends Migration
     public function up()
     {
         Schema::table('contents', function (Blueprint $table) {
-            $table->renameColumn('address_first', 'prefectures');
-            $table->renameColumn('address_last', 'address');
-            $table->string('gmap'); 
+            $table->string('placename');  //カラム追加
         });
     }
 
@@ -27,6 +25,8 @@ class ChangeContentsTableColumn extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('contents', function (Blueprint $table) {
+            $table->dropColumn('placename');  //カラムの削除
+        });
     }
 }

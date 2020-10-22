@@ -62,3 +62,7 @@
 </div>
 @endsection
 
+@section('create')
+        <button type="button" class="btn btn-success"><a href="{{ action('ContentsController@create') }}"><font color=white>依頼作成</font></a></button>
+@endsection
+
