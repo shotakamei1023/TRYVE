@@ -12,7 +12,7 @@ function initMap() {
 function codeAddress() {
   geocoder = new google.maps.Geocoder();
 
-  inputAddress = document.getElementById('address').value;
+  inputAddress = document.getElementById('placename').value;
 
   geocoder.geocode({ 'address': inputAddress }, function (results, status) {
     if (status == 'OK') {
@@ -24,24 +24,38 @@ function codeAddress() {
         map: map,
       });
       latlngDis.innerHTML = results[0].geometry.location;
-      const a = results[0].geometry.location;
       const endData = latlngDis.innerHTML.split(',');
+      const addresdata = results[0].formatted_address.split(' ');
+      const findresult = addresdata[0].match('〒');
+      const addressURL = document.getElementById('addressURL');
+      const prefectures = document.getElementById('prefectures');
+      const address = document.getElementById('address');
 
       console.log(endData);
-      console.log(a);
+      console.log(addresdata);
+      console.log(findresult);
+      console.log(addresdata[1].substr(3, 1));
+      console.log(addresdata[1].substr(0, 3));
 
-      const addressURL = document.getElementById('addressURL');
-      addressURL.value = "https://www.google.co.jp/maps/place/" + results[0].formatted_address.slice(13) + "/@" + endData[0].slice(1) + "," + endData[1].slice(1, -1) + "," + "20z"
-      geocoder.geocode({ 'location': marker.getPosition() }, function (results, status) {
-        if (status == "OK") {
-          const addressfind = document.getElementById('addressfind');
-          addressfind.innerHTML = "見つかったぽよ"
+      if (addresdata[1].substr(3, 1) == "県") {
+        prefectures.value = addresdata[1].substr(0, 4);
+        address.value = addresdata[1].substr(4, addresdata[1].length);
+      } else {
+        prefectures.value = addresdata[1].substr(0, 3);
+        address.value = addresdata[1].substr(3, addresdata[1].length);
+      }
+
+      addressURL.value = "https://www.google.co.jp/maps/place/" + addresdata[0] + "+" + addresdata[1] + "/@" + endData[0].slice(1) + "," + endData[1].slice(1, -1) + "," + "20z";
+
+      geocoder.geocode({ 'location': marker.getPosition() }, function (addresdata) {
+        if (findresult != null) {
+          alert("依頼先の住所を発見できました。");
         } else {
-          alert("Geocode 取得に失敗しました：" + status);
+          alert("入力された情報では、依頼先の住所を発見することができませんでした。");
         }
       });
     } else {
-      alert("該当する結果がありませんでした：" + status);
+      alert("該当する結果がありませんでした：" + addresdata);
     }
   });
 }
