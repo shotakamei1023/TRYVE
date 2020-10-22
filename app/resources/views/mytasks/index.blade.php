@@ -19,6 +19,11 @@
 @endsection
 
 @section('content')
+@if (session('msg_success'))
+        <div class="msg_success alert alert-success">
+                {{ session('msg_success') }}
+        </div>
+@endif
 <table class="table table-hover">
   <thead class="thead-light">
     <tr>
@@ -42,12 +47,12 @@
                 <td></td>
         @elseif($contentitem->content->helper_id == Auth::user()->id && $contentitem->content->report_status == 3)
                 <td>{{$contentitem->content->report_text}}</td>
-                <td><form method="post" action="{{ route('mytask.cancel', ['id' => $contentitem->content->id]) }}">@method('PATCH')@csrf<input type="submit" value="中断" ></form></td>
+                <td><form method="post" action="{{ route('mytask.cancel', ['id' => $contentitem->content->id]) }}">@method('PATCH')@csrf<input class='btn btn-warning' type="submit" value="中断" ></form></td>
                 <td><button type="button" class="btn btn-primary"><a href="{{ route('mytask.edit', ['id' => $contentitem->content->id]) }}"><font color=white>レポートを提出する</font></a></button></td>
         @elseif($contentitem->content->helper_id == Auth::user()->id && $contentitem->content->report_status == 4)
                 <td>{{$contentitem->content->report_text}}</td>
-                <td>レポート提出完了</td>
-                <td>{{$contentitem->content->value_text}}</td>
+                <td><a href="{{ route('mytask.show', ['id' => $contentitem->content->id]) }}"><font color=black>レポート提出完了</font></a></td>
+                <td></td>
         @elseif($contentitem->content->helper_id != Auth::user()->id)
                 <td>デート代行が他の方に決定しました。</td>
                 <td></td>

@@ -19,6 +19,11 @@
 @endsection
 
 @section('content')
+@if (session('msg_success'))
+        <div class="msg_success alert alert-success">
+                {{ session('msg_success') }}
+        </div>
+@endif
 <table class="table table-hover">
   <thead class="thead-light">
     <tr>
@@ -40,7 +45,7 @@
                 <td><form method="post" action="{{ route('mycontent.destroy', ['id' => $content->id]) }}">@method('DELETE')@csrf<input class='btn btn-danger' type="submit" value="削除" ></form></td>
         @elseif ($content->content_status == 2)
                 <td><button type="button" class="btn btn-info"><a href="{{ route('mycontent.load', ['id' => $content->id]) }}"><font color=white>申請者リストを見る</font></a></button></td>
-                <td></td>
+                <td><form method="post" action="{{ route('mycontent.destroy', ['id' => $content->id]) }}">@method('DELETE')@csrf<input class='btn btn-danger' type="submit" value="削除" ></form></td>
         @elseif ($content->content_status == 3)
                 <td>{{$content->helper->name}}さんにお願いしました </td>
                 <td></td>

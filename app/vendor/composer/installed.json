@@ -1,5 +1,50 @@
 [
     {
+        "name": "askedio/laravel-soft-cascade",
+        "version": "8.0.0",
+        "version_normalized": "8.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Askedio/laravel-soft-cascade.git",
+            "reference": "54a27b95f01175ffcc71e25e95af496b1f2e45d8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Askedio/laravel-soft-cascade/zipball/54a27b95f01175ffcc71e25e95af496b1f2e45d8",
+            "reference": "54a27b95f01175ffcc71e25e95af496b1f2e45d8",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/container": "^7.0|^8.0",
+            "illuminate/database": "^7.0|^8.0",
+            "illuminate/events": "^7.0|^8.0",
+            "illuminate/support": "^7.0|^8.0",
+            "php": "^7.2.5"
+        },
+        "require-dev": {
+            "codacy/coverage": "dev-master",
+            "orchestra/testbench": "^5.0|^6.0",
+            "phpunit/phpunit": "^8.4|^9.0"
+        },
+        "time": "2020-09-21T06:40:44+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Askedio\\SoftCascade\\Providers\\GenericServiceProvider"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Askedio\\SoftCascade\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "description": "Laravel Cascade Soft Delete & Restore"
+    },
+    {
         "name": "asm89/stack-cors",
         "version": "v2.0.1",
         "version_normalized": "2.0.1.0",

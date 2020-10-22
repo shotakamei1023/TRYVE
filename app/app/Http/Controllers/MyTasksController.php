@@ -31,9 +31,22 @@ class MyTasksController extends Controller
     // postで/mypage/tasks/{$id}/revueにアクセスされた場合
     public function submit(Request $request)
     {
-        $content = Content::find($request->id);
-        $content->update(['content_status'=>4,'report_status'=>4,'report'=>$request->report]);
-        return redirect()->action('MyTasksController@index');
+        //requestからactionを抽出する。actionが無ければbackを返す
+        $action = $request->input('action', '戻る');
+
+        //入力画面に返す情報からactionは取り除く。
+        $inputs = $request->except('action');
+
+        
+         if($action === 'レポートを提出する') {
+
+            $content = Content::find($request->id);
+            $content->update(['content_status'=>4,'report_status'=>4,'report'=>$request->report]);
+            return redirect()->action('MyTasksController@index')->with('msg_success', '依頼作成が完了しました');
+            }else {
+            //戻る
+            return redirect()->action('MyTasksController@index');
+            }
     }
     // deleteで/mypage/tasks/{$id}/destroyにアクセスされた場合
     public function destroy(Request $request)
@@ -46,5 +59,10 @@ class MyTasksController extends Controller
         $content = Content::find($request->id);
         $content->update(['content_status'=>2,'report_status'=>2,'helper_id'=>null]);
         return redirect()->action('MyTasksController@index');
+    }
+    public function show(Request $request)
+    {
+        $content = Content::find($request->id);
+        return view('mytasks.show',compact('content'));
     }
 }

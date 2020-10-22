@@ -45,3 +45,4 @@ Route::get('/mypage/tasks{id}/', 'MyTasksController@edit')->name('mytask.edit');
 Route::patch('/mypage/tasks/{id}/revue/', 'MyTasksController@submit')->name('mytask.submit');
 Route::delete('/mypage/tasks/{id}/destroy', 'MyTasksController@destroy')->name('mytask.destroy');
 Route::patch('/mypage/tasks/{id}/cancel', 'MyTasksController@cancel')->name('mytask.cancel');
+Route::get('/mypage/tasks/{id}/show', 'MyTasksController@show')->name('mytask.show');

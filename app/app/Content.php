@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Content extends Model
 {
+
+    use SoftDeletes;
+    use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
+
+    protected $softCascade = ['contentitem'];
+    
     public function getValueTextAttribute()
     {
         switch($this->attributes['value']) {
@@ -61,7 +67,7 @@ class Content extends Model
         }
         
     }
-    use SoftDeletes;
+
     
         public function owner()
     {
