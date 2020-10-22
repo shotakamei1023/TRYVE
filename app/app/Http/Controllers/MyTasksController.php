@@ -12,7 +12,14 @@ class MyTasksController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $contentitems = ContentItem::where('user_id', $user->id)->get();
+        $contentitems = ContentItem::where('user_id', $user->id)->paginate(5);
+        $param = ['contentitems' => $contentitems, 'report_status' => ''];
+        return view('mytasks.index',$param);
+    }
+        public function find(Request $request)
+    {
+        $user = Auth::user();
+        $contentitems = ContentItem::where('user_id', $user->id)->whereHas('content', function($query)use($request){$query->where('report_status', $request['report_status']);})->paginate(5);
         return view('mytasks.index',compact('contentitems'));
     }
     // getで/mypage/tasks{$id}/にアクセスされた場合
@@ -31,7 +38,13 @@ class MyTasksController extends Controller
     // deleteで/mypage/tasks/{$id}/destroyにアクセスされた場合
     public function destroy(Request $request)
     {
-        $contentitem = ContentItem::find($request->id)->delete();;
+        $contentitem = ContentItem::find($request->id)->delete();
+        return redirect()->action('MyTasksController@index');
+    }
+    public function cancel(Request $request)
+    {
+        $content = Content::find($request->id);
+        $content->update(['content_status'=>2,'report_status'=>2,'helper_id'=>null]);
         return redirect()->action('MyTasksController@index');
     }
 }

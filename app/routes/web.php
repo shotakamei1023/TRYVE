@@ -30,6 +30,7 @@ Route::post('/contents/create/store', 'ContentsController@store')->name('content
 Route::get('/contents/{id}/show', 'ContentsController@show')->name('content.show');
 Route::patch('/contents/{id}/post/', 'ContentsController@post')->name('content.post');
 Route::get('/mypage/contents', 'MyContentsController@index')->name('mycontent.index');
+Route::post('/mypage/contents/find', 'MyContentsController@find')->name('mycontent.find');
 Route::get('/mypage/contents/{id}/edit', 'MyContentsController@edit')->name('mycontent.edit');
 Route::patch('/mypage/contents/{id}/update', 'MyContentsController@update')->name('mycontent.update');
 Route::delete('/mypage/contents/{id}/destroy', 'MyContentsController@destroy')->name('mycontent.destroy');
@@ -39,6 +40,8 @@ Route::get('/mypage/contents/{id}/revue/show', 'MyContentsController@show')->nam
 Route::get('/mypage/contents/{id}/helper', 'MyContentsController@load')->name('mycontent.load');
 Route::patch('/mypage/contents/{id}/helper/permit', 'MyContentsController@permit')->name('mycontent.permit');
 Route::get('/mypage/tasks', 'MyTasksController@index')->name('mytask.index');
+Route::post('/mypage/tasks/find', 'MyTasksController@find')->name('mytask.find');
 Route::get('/mypage/tasks{id}/', 'MyTasksController@edit')->name('mytask.edit');
 Route::patch('/mypage/tasks/{id}/revue/', 'MyTasksController@submit')->name('mytask.submit');
 Route::delete('/mypage/tasks/{id}/destroy', 'MyTasksController@destroy')->name('mytask.destroy');
+Route::patch('/mypage/tasks/{id}/cancel', 'MyTasksController@cancel')->name('mytask.cancel');

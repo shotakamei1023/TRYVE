@@ -17,9 +17,19 @@ public function __construct()
     public function index()
     {
         $user = Auth::user();
-        $contents = Content::where('owner_id', $user->id)->get();
+        $contents = Content::where('owner_id', $user->id)->paginate(5);
+        $param = ['contents' => $contents, 'content_status' => '' ];
+        return view('mycontents.index',$param);
+    }
+
+    public function find(Request $request)
+    {
+        $user = Auth::user();
+        var_dump($request['content_status']);
+        $contents = Content::where('owner_id', $user->id)->where('content_status',$request['content_status'])->paginate(5);
         return view('mycontents.index',compact('contents'));
     }
+    
     // getで/mypage/contents/{$id}/editにアクセスされた場合
     public function edit(Request $request)
     {
@@ -65,14 +75,14 @@ public function __construct()
     // getで/mypage/contents/{$id}/helperにアクセスされた場合
     public function load(Request $request)
     {
-        $contents = ContentItem::where('content_id', $request->id)->get();
-        return view('mycontents.load',compact('contents'));    
+        $contentitems = ContentItem::where('content_id', $request->id)->whereNull('deleted_at')->get();
+        return view('mycontents.load',compact('contentitems'));    
     }
     // patchで/mypage/contents/{$id}/helper/permitにアクセスされた場合
     public function permit(Request $request)
     {
-        $content = Content::find($request->id);
-        $contentitem = ContentItem::where('content_id', $request->id)->first();
+        $contentitem =ContentItem::find($request->id);
+        $content = Content::find($contentitem->content_id);
         $content->update(['content_status'=>3,'report_status'=>3,'helper_id'=>$contentitem->user_id]);
         return redirect()->action('MyContentsController@index');
     }

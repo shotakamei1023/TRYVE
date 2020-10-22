@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-@foreach($contents as $content)
+@foreach($contentitems as $contentitem)
 <table>
 <tr>
-        <td>{{$content->user->id}}</td>
-        <td>{{$content->user->name}}</td>
-        <td><form method="post" action="{{ route('mycontent.permit', ['id' => $content->id]) }}">@method('PATCH')@csrf<input type="submit" value="お願いする" ></form></td>
+        <td>{{$contentitem->user->id}}</td>
+        <td>{{$contentitem->user->name}}</td>
+        <? var_dump($contentitem->id); ?>
+        <td><form method="post" action="{{ route('mycontent.permit', ['id' => $contentitem->id]) }}">@method('PATCH')@csrf<input type="submit" value="お願いする" ></form></td>
 <tr>
 </table>
 @endforeach
