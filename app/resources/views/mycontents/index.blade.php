@@ -19,12 +19,12 @@
 @endsection
 
 @section('content')
-@foreach($contents as $content)
 <table class="table table-hover">
   <thead class="thead-light">
     <tr>
         <th scope="col">依頼タイトル</th>
         <th scope="col">ステータス</th>
+        <th scope="col">作成日時</th>
         <th scope="col"></th>
         <th scope="col"></th>
     </tr>
@@ -34,6 +34,7 @@
     <tr>
         <th scope="row"><a href="{{ route('content.show', ['id' => $content->id]) }}"><font color=black>{{$content->title}}</font></a></th>
         <td>{{$content->content_text}}</td>
+        <td>{{$content->created_at->format('Y/m/d')}}</td>
         @if ($content->content_status == 1 )
                 <td><button type="button" class="btn btn-secondary"><a href="{{ route('mycontent.edit', ['id' => $content->id]) }}"><font color=white>編集</font></a></button></td>
                 <td><form method="post" action="{{ route('mycontent.destroy', ['id' => $content->id]) }}">@method('DELETE')@csrf<input class='btn btn-danger' type="submit" value="削除" ></form></td>
@@ -56,7 +57,6 @@
         @endforeach
   </tbody>
 </table>
-@endforeach
 <div class="d-flex justify-content-center">
     {{ $contents->links() }}
 </div>

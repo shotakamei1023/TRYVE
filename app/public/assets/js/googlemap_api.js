@@ -45,7 +45,7 @@ function codeAddress() {
         address.value = addresdata[1].substr(3, addresdata[1].length);
       }
 
-      addressURL.value = "https://www.google.co.jp/maps/place/" + addresdata[0] + "+" + addresdata[1] + "/@" + endData[0].slice(1) + "," + endData[1].slice(1, -1) + "," + "20z";
+      addressURL.value = "https://www.google.co.jp/maps/place/" + addresdata[1] + "/@" + endData[0].slice(1) + "," + endData[1].slice(1, -1) + "," + "20z";
 
       geocoder.geocode({ 'location': marker.getPosition() }, function (addresdata) {
         if (findresult != null) {
@@ -55,7 +55,7 @@ function codeAddress() {
         }
       });
     } else {
-      alert("該当する結果がありませんでした：" + addresdata);
+      alert("該当する結果がありませんでした：");
     }
   });
 }

@@ -24,6 +24,10 @@
         <div class="flash_message alert alert-warning">
                 {{ session('flash_message') }}
         </div>
+@elseif (session('msg_success'))
+        <div class="msg_success alert alert-success">
+                {{ session('msg_success') }}
+        </div>
 @endif
 <table class="table table-hover">
   <thead class="thead-light">
