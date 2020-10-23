@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $contents = Content::latest()->limit(3)->get();
+        $contents = Content::whereNull('helper_id')->latest()->limit(3)->get();
         return view('homes.index',compact('contents'));
     }
 }
