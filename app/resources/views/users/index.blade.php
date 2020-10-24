@@ -1,24 +1,18 @@
 
 @extends('layouts.app')
-@section('top')
-<div id="box">
-  <div id="title">
-    マイページ
-  </div>
-  <div id="name">
+@section('title')
+<h1 class="font-weight-bold">マイページ</h1>
+<p>デート状況や新着情報を確認することができます。</p>
+@endsection
+@section('content')
+
     {{ Auth::user()->name }}
-  </div>
-  <div id="message">
     @if($avg == null)
     あなたの代行評価はありません
     @else
     あなたの代行評価は{{$avg}}です。
     @endif
-  </div>
-  <div id="link_box">
-    <a href="{{ route('user.edit') }}" id="link">アカウント登録情報変更</a>
-  </div>
-</div>
+    <a href="{{ route('mypage.edit') }}">アカウント登録情報変更</a>
 @endsection
 
 <style>

@@ -17,32 +17,22 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    
     <link rel="stylesheet" href="{{ asset('/assets/css/all.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/app.css') }}">
 
-    @yield('assets')
 </head>
 <body>
 @include('layouts._header')
-
-<div class="p-5 fs-10 mt-5 text-center" style="background: #fbc700;">
-    
-    @yield('title')
-
-    <div style="font-size: 1rem">
-    @yield('tag')
-    </div>
-</div>
-
-<main class="container">
-{{-- 検索ボックス --}}
-@yield('search')
-@yield('content')
-    {{-- 依頼作成 --}}
-    @yield('create')
-</main>
+            @yield('content')
+        <main class="py-4">
+            {{-- 検索ボックス --}}
+            @yield('search')
+            {{-- データ表示 --}}
+            @yield('content')
+            {{-- 依頼作成 --}}
+            @yield('create')
+        </main>
 </body>
 </html>
