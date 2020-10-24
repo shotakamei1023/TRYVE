@@ -6,3 +6,25 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.headerLogo {
+  height: 40px;
+}
+
+.navbar {
+  padding: .1rem 1rem;
+}
+
+body {
+  background-color: #fff;
+
+}
+
+.container {
+  margin-top: 70px;
+}
+
+.mapSearch {
+  width: 73%;
+  display: inline-block;
+}

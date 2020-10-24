@@ -6,7 +6,7 @@
                 入力確認画面
         </div>
         <div class="card-body">
-            <form action="{{ route('mycontent.store', ['id' => $content->id]) }}" method="post">
+            <form action="{{ route('mypage.contents.revue.store', ['id' => $content->id]) }}" method="post">
                 @method('PATCH')
                 @csrf
                 <div>タイトル：{{ $content['title'] }}<input name="title" value="{{ $content['title'] }}" type="hidden"></div>

@@ -6,7 +6,7 @@
 <section>
 <div id="box">
   <div id="form_box">
-      <form method="POST" action="{{ route('user.update') }}">
+      <form method="POST" action="{{ route('mypage.update') }}">
           @method('PATCH')
           @csrf
 

@@ -1,14 +1,12 @@
 @extends('layouts.app')
-
+@section('title')
+<h1 class="font-weight-bold">デート作成</h1>
+<p>試してほしいデートプランを作成することができます。</p>
+@endsection
 @section('content')
-<div id='box'>
   <div class="card">
-    <div class="card-header">
-      依頼作成画面
-    </div>
     <div class="card-body">
-      <form action="/contents/create/check" method="post">
-      @csrf
+
         @if($errors->any())
           <div>
             @foreach($errors->all() as $error)
@@ -16,46 +14,48 @@
             @endforeach
           </div>
         @endif
-      <div class="form-group row">
-        <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('タイトルを入力') }}</label>
-        <div ><input class="form-control" type="text" name="title" value="{{old('title')}}" placeholder="〇〇の下見へ行ってください"></div>
-      </div>
-      <div class="form-group row">
-        <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('相手に支払う金額を入力') }}</label>
-        <div ><input class="form-control" type="number" name="price" value="{{old('price')}}" placeholder="半角数字で数値のみの入力"></div>
-      </div>
-      <div class="form-group row">
-        <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('相手にお願いする依頼の内容を入力') }}</label>
-        <div><textarea class="form-control" rows="4" name="order" placeholder="東京駅中にある〇〇というお店でオムライスを食べ、美味しさをを教えてください">{{old('order')}}</textarea></div>
-      </div>
-      <div class="form-group row">
-        <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('地名やお店の名前を入力') }}</label>
-        <div ><input class="form-control" type="text" id="placename" name="placename" value="{{old('placename')}}" placeholder="スカイツリー"></div>
-      </div>
-      <div id="map_box">
-        <div id="map"></div>
-      </div>
-      <div class="form-group row">
-        <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('地名の住所を検索') }}</label>
-        <div ><input class="btn btn-outline-info" type="button" value="住所の情報を取得" onClick="codeAddress()"></div>
-      </div>
-      <div class="form-group row">
-        <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('都道府県') }}</label>
-        <div ><input class="form-control" id="prefectures" type="text" name="prefectures" value="{{old('prefectures')}}" placeholder="自動入力されます"></div>
-      </div>
-      <div class="form-group row">
-        <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('都道府県以下') }}</label>
-        <div ><input class="form-control" id="address"　type="text" name="address" value="{{old('address')}}" placeholder="自動入力されます"></div>
-      </div>
-      <div class="form-group row mb-0">
-        <div class="col-md-6 offset-md-4">
-          <input class='btn btn-primary' type="submit" value="送信">
-        </div>
-      </div>
-      <div><input id="addressURL" type="hidden" name="gmap" value="{{old('gmap')}}" ></div>
-      <div id="latlngDisplay">ここに緯度、経緯が表示される</div>
-  </form>
-</div>
+      <form action="/contents/create/check" method="post">
+        @csrf
+        <table class="table table-borderless">
+          <tbody>
+            <tr class="text-md-right">
+              <td><label for="title" class="col-form-label">{{ __('タイトルを入力') }}</label></td>
+              <td class="w-75"><input class="form-control" type="text" name="title" value="{{old('title')}}" placeholder="〇〇の下見へ行ってください"></td>
+            </tr>
+            <tr class="text-md-right">
+              <td><label for="price" class="col-form-label">{{ __('相手に支払う金額を入力') }}</label></td>
+              <td><input class="form-control" type="number" name="price" value="{{old('price')}}" placeholder="半角数字で数値のみの入力"></td>
+            </tr>
+            <tr class="text-md-right">
+              <td><label for="title" class="col-form-label">{{ __('相手にお願いする依頼の内容を入力') }}</label></td>
+              <td><textarea class="form-control" rows="4" name="order" placeholder="東京駅中にある〇〇というお店でオムライスを食べ、美味しさをを教えてください">{{old('order')}}</textarea></td>
+            </tr>
+            <tr class="text-md-right">
+              <td><label for="title" class="col-form-label">{{ __('地名やお店の名前を入力') }}</label></td>
+              <td>
+                <div>
+                  <input class="form-control mapSearch" type="text" id="placename" name="placename" value="{{old('placename')}}" placeholder="スカイツリー">
+                  <input class="btn btn-outline-info w-25" type="button" value="住所を取得" onClick="codeAddress()">
+                </div>
+                <div id="map_box">
+                  <div id="map"></div>
+                </div>
+              </td>
+            </tr>
+            <tr class="text-md-right">
+              <td><label for="title" class="col-form-label">{{ __('都道府県') }}</label></td>
+              <td><input class="form-control" id="prefectures" type="text" name="prefectures" value="{{old('prefectures')}}" placeholder="自動入力されます"></td>
+            </tr>
+            <tr class="text-md-right">
+              <td><label for="title" class="col-form-label">{{ __('都道府県以下') }}</label></td>
+              <td><input class="form-control" id="address"　type="text" name="address" value="{{old('address')}}" placeholder="自動入力されます"></td>
+            </tr>
+          </tbody>
+        </table>
+        <input id="addressURL" type="hidden" name="gmap" value="{{old('gmap')}}" >
+        <input class='btn btn-primary w-75 mx-auto d-block' type="submit" value="入力内容の確認">
+        <div id="latlngDisplay" class='d-none'></div>
+      </form>
 </div>
 
 <style>
