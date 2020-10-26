@@ -40,11 +40,11 @@ class Content extends Model
             case 1:
                 return '受付中';
             case 2;
-                return '申請が届きました';
+                return '新着あり';
             case 3;
-                return '代行依頼中';
+                return 'デート依頼中';
             case 4;
-                return '依頼完了';
+                return 'デート依頼完了';
             default:
                 return '??';
         }

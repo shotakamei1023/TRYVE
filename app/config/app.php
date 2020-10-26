@@ -133,6 +133,8 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
+    'google_api' => env('GOOGLE_API_KEY'),
+
 
     'providers' => [
 
