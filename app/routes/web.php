@@ -13,35 +13,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('index');
+Route::get('/', 'IndexController@index')->name('index');
 
 Auth::routes();
-Route::get('/mypage', 'UsersController@index')->name('mypage.index');
-Route::get('/mypage/edit', 'UsersController@edit')->name('mypage.edit');
-Route::patch('/mypage/update', 'UsersController@update')->name('mypage.update');
+Route::get('/mypage', 'MypageController@index')->name('mypage.index');
+Route::get('/mypage/edit', 'MypageController@edit')->name('mypage.edit');
+Route::patch('/mypage/update', 'MypageController@update')->name('mypage.update');
 
 
 Route::get('/contents', 'ContentsController@index')->name('contents.index');
 Route::post('/contents/find', 'ContentsController@find')->name('contents.find');
-Route::get('/contents/create', 'ContentsController@create')->name('mypage.contents.create');
-Route::post('/contents/create/check', 'ContentsController@check')->name('mypage.contents.create.check');
-Route::post('/contents/create/store', 'ContentsController@store')->name('mypage.contents.create.store');
 Route::get('/contents/{id}/show', 'ContentsController@show')->name('contents.show');
-Route::patch('/contents/{id}/post/', 'ContentsController@post')->name('contents.store');
-Route::get('/mypage/contents', 'MyContentsController@index')->name('mypage.contents.index');
-Route::post('/mypage/contents/find', 'MyContentsController@find')->name('mypage.contents.find');
-Route::get('/mypage/contents/{id}/edit', 'MyContentsController@edit')->name('mypage.contents.edit');
-Route::patch('/mypage/contents/{id}/update', 'MyContentsController@update')->name('mypage.contents.update');
-Route::delete('/mypage/contents/{id}/destroy', 'MyContentsController@destroy')->name('mypage.contents.destroy');
-Route::get('/mypage/contents/{id}/revue', 'MyContentsController@revue')->name('mypage.contents.revue.index');
-Route::patch('/mypage/contents/{id}/revue/store', 'MyContentsController@store')->name('mypage.contents.revue.store');
-Route::get('/mypage/contents/{id}/revue/show', 'MyContentsController@show')->name('mypage.contents.revue.show');
-Route::get('/mypage/contents/{id}/helper', 'MyContentsController@load')->name('mypage.contents.helper');
-Route::patch('/mypage/contents/{id}/helper/permit', 'MyContentsController@permit')->name('mypage.contents.update');
-Route::get('/mypage/tasks', 'MyTasksController@index')->name('mypage.tasks.index');
-Route::post('/mypage/tasks/find', 'MyTasksController@find')->name('mypage.tasks.find');
-Route::get('/mypage/tasks{id}/', 'MyTasksController@edit')->name('mypage.tasks.edit');
-Route::patch('/mypage/tasks/{id}/revue/', 'MyTasksController@submit')->name('mypage.tasks.update');
-Route::delete('/mypage/tasks/{id}/destroy', 'MyTasksController@destroy')->name('mypage.tasks.destroy');
-Route::patch('/mypage/tasks/{id}/cancel', 'MyTasksController@cancel')->name('mypage.tasks.update');
-Route::get('/mypage/tasks/{id}/show', 'MyTasksController@show')->name('mypage.tasks.show');
+Route::patch('/contents/{id}/post/', 'ContentsController@post')->name('contents.store')->middleware('auth');
+
+Route::get('/mypage/contents', 'MypageContentsController@index')->name('mypage.contents.index');
+Route::post('/mypage/contents/find', 'MypageContentsController@find')->name('mypage.contents.find');
+Route::get('/contents/create', 'MypageContentsController@create')->name('mypage.contents.create');
+Route::post('/contents/create/check', 'MypageContentsController@check')->name('mypage.contents.create.check');
+Route::post('/contents/create/store', 'MypageContentsController@store')->name('mypage.contents.create.store');
+Route::get('/mypage/contents/{id}/edit', 'MypageContentsController@edit')->name('mypage.contents.edit');
+Route::patch('/mypage/contents/{id}/update', 'MypageContentsController@update')->name('mypage.contents.update');
+Route::delete('/mypage/contents/{id}/destroy', 'MypageContentsController@destroy')->name('mypage.contents.destroy');
+Route::get('/mypage/contents/{id}/review/show', 'MypageContentsController@show')->name('mypage.contents.review.show');
+Route::get('/mypage/contents/{id}/review', 'MypageContentsController@review')->name('mypage.contents.review.index');
+Route::patch('/mypage/contents/{id}/review/put', 'MypageContentsController@put')->name('mypage.contents.review.put');
+Route::get('/mypage/contents/{id}/helper', 'MypageContentsController@load')->name('mypage.contents.helper');
+
+Route::get('/mypage/tasks', 'MypageTasksController@index')->name('mypage.tasks.index');
+Route::post('/mypage/tasks/find', 'MypageTasksController@find')->name('mypage.tasks.find');
+Route::get('/mypage/tasks{id}/', 'MypageTasksController@edit')->name('mypage.tasks.edit');
+Route::patch('/mypage/tasks/{id}/review/', 'MypageTasksController@update')->name('mypage.tasks.update');
+Route::delete('/mypage/tasks/{id}/destroy', 'MypageTasksController@destroy')->name('mypage.tasks.destroy');
+Route::get('/mypage/tasks/{id}/show', 'MypageTasksController@show')->name('mypage.tasks.show');

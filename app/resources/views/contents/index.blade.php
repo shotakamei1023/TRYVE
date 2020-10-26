@@ -7,13 +7,13 @@
         <form action="/contents/find" method="post" class="mb-4 mt-2 p-4 bg-light">
         @csrf
                 <div class="form-row">
-                        <div class="col">
+                        <div class="col-xs-10 col-sm-4 mb-2">
                                 <input type="text" class="form-control" name="title" value="{{$title}}" placeholder="タイトル">
                         </div>
-                        <div class="col">
+                        <div class="col-xs-10 col-sm-4 mb-2">
                                 <input type="text" class="form-control" name="prefectures" value="{{$prefectures}}" placeholder="都道府県">
                         </div>
-                        <div class="col">
+                        <div class="col-xs-10 col-sm-4 mb-2">
                                 <input type="number" class="form-control" name="price" value="{{$price}}" placeholder="報酬">
                         </div>
                         <input class='btn btn-secondary' type="submit" value="検索"> 
@@ -32,9 +32,9 @@
                 {{ session('msg_success') }}
         </div>
 @endif
-<div class="row row-cols-3">
+<div class="row">
     @foreach($contents as $item)
-        <div class="col p-3">
+        <div class="col-xs-10 col-sm-6 col-md-4 mb-3">
         <div class="card p-0 w-100" style="width: 18rem;">
             <div class="card-body p-0">
                 <div class="card-title p-3" style="background: #fbc700;"><h5 class="font-weight-bold" style="height: 45px;">{{$item->title}}</h5>
@@ -70,7 +70,7 @@
                                 <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
                             </svg>{{$item->contentitem()->whereNull('deleted_at')->count()}}人
                         </div>
-                    <form method="post" action="{{ route('contents.store', ['id' => $item->id]) }}">@method('PATCH')@csrf<input type="submit" value="デート代行する" class="btn btn-primary btn-lg w-100 mt-2"></form>
+                    <form method="post" action="{{ route('contents.store', ['id' => $item->id ]) }}">@method('PATCH')@csrf<input type="submit" value="デート代行する" class="btn btn-primary btn-lg w-100 mt-2"></form>
                 </div>
             </div>
         </div>

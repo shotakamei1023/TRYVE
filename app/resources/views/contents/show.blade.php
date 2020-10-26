@@ -48,15 +48,30 @@
                         <td>報酬</td>
                         <td>{{$content->price}}</td>
                         </tr>
-                         <tr>
+                        <tr>
                         <td>地図</td>
-                        <td><a href={{$content->gmap}} class="btn btn-primary">依頼先のGoolemapURLリンク</a></td>
+                        <td><div id="map"></div></td>
+                        </tr>
+                        <tr>
+                        <td>地図のリンク</td>
+                        <td><a href={{$content->gmap}} class="btn btn-primary" id=GmapLink target="_blank">依頼先のGoolemapURLリンク</a></td>
                         </tr>
                         </tbody>
                 </table>
-                <form method="post" action="{{ route('contents.store', ['id' => $content->id]) }}">@method('PATCH')@csrf<input type="submit" value="デート代行する" class="btn btn-primary btn-lg w-100 mt-2"></form>
-                
-
+                {{-- 代行する人が決まっていたらボタンを表示しない --}}
+                @if( isset ( $content->helper_id ) )
+                @elseif( $content->owner_id == Auth::user()->id)
+                @else<form method="post" action="{{ route('contents.store', ['id' => $content->id]) }}">@method('PATCH')@csrf<input type="submit" value="デート代行する" class="btn btn-primary btn-lg w-100 mt-2"></form>
+                @endif
         </div>
 </div>
+<style>
+#map{
+    height: 200px;
+    width: 100%;
+}
+
+</style>
+<script src="{{ asset('/assets/js/googlemap_api.LinkDestination.js') }}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_api') }}&callback=initMap"></script>
 @endsection

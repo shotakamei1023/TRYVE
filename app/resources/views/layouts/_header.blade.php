@@ -17,7 +17,7 @@
           <a class="nav-link" href="{{ route('mypage.index') }}">マイページ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('mypage.contents.index') }}">デートを探す</a>
+          <a class="nav-link" href="{{ route('contents.index') }}">デートを探す</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('mypage.contents.create') }}">デート作成</a>
@@ -30,11 +30,10 @@
         </li>
 
         <li class="nav-item">
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-            <input type="submit" value="Logout" />
-          </form>
+          <a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
+                                                          document.getElementById('logout-form').submit();">ログアウト</a>
         </li>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
       @endguest
       {{-- <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
