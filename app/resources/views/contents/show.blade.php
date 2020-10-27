@@ -58,10 +58,17 @@
                         </tr>
                         </tbody>
                 </table>
-                {{-- 代行する人が決まっていたらボタンを表示しない --}}
-                @if( isset ( $content->helper_id ) )
-                @elseif( $content->owner_id == Auth::user()->id)
-                @else<form method="post" action="{{ route('contents.store', ['id' => $content->id]) }}">@method('PATCH')@csrf<input type="submit" value="デート代行する" class="btn btn-primary btn-lg w-100 mt-2"></form>
+                @if(Auth::user())
+                        {{-- 代行する人が決まっていたらボタンを表示しない --}}
+                        @if( isset ( $content->helper_id ) )
+                        @elseif( $content->owner_id == Auth::user()->id)
+                        @else<form method="post" action="{{ route('contents.store', ['id' => $content->id]) }}">@method('PATCH')@csrf<input type="submit" value="デート代行する" class="btn btn-primary btn-lg w-100 mt-2"></form>
+                        @endif
+                @else
+                <div class="bg-light p-3">
+                 <p class="text-center">会員登録するとデートを代行することができます</p>
+                 <a class="btn btn-primary mx-auto d-block w-50" style="min-width:250px" href="{{ route('register') }}" role="button">会員登録する</a>
+                </div>
                 @endif
         </div>
 </div>

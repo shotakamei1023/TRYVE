@@ -1,11 +1,15 @@
 @extends('layouts.app')
 
+@section('title')
+<h1 class="font-weight-bold">ログイン</h1>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('ログイン') }}</div>
+                <div class="card-header">{{ __('') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
