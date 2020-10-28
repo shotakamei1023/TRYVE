@@ -23,9 +23,9 @@
 
 @section('content')
 
-@if (session('flash_message'))
-        <div class="flash_message alert alert-warning">
-                {{ session('flash_message') }}
+@if (session('error_message'))
+        <div class="error_message alert alert-warning">
+                {{ session('error_message') }}
         </div>
 @elseif (session('msg_success'))
         <div class="msg_success alert alert-success">
@@ -83,7 +83,4 @@
 </div>
 @endsection
 
-@section('create')
-{{-- <button type="button" class="btn btn-success"><a href="{{ action('ContentsController@create') }}"><font color=white>依頼作成</font></a></button> --}}
-@endsection
 
