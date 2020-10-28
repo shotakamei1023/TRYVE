@@ -103,18 +103,13 @@
       </div>
       </div>
       <div id="bottom_buttons">
-      <button type="button" class="col-md-5 mb-3" onclick="location.href='{{ route('mypage.contents.create') }}'" id='bottom_button1'>デート代行を依頼する方</button>
-      <button type="button" class="col-md-5 mb-3" onclick="location.href='{{ route('contents.index') }}'" id='bottom_button2'>デート代行を請け負う方</button>
+      <button type="button" class="col-md-4 mb-3" onclick="location.href='{{ route('mypage.contents.create') }}'" id='bottom_button1'>デート代行を依頼する方</button>
+      <button type="button" class="col-md-4 mb-3" onclick="location.href='{{ route('contents.index') }}'" id='bottom_button2'>デート代行を請け負う方</button>
       <div>
     </div>
   </section>
-  {{-- <section>
-    <footer>
-    <div id="footer_box">
-      <img id="footer" src="{{ asset('/assets/images/footer.png') }}" alt="footer">
-    </div>
-    </footer>
-  </section> --}}
+
+  
   <style>
     /* section1 */
     #top_left{
