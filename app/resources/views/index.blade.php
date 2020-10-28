@@ -257,7 +257,7 @@
     }
     #bottom_message2{
       text-align: center;
-      font-size: 15px;
+      font-size: 20px;
       color:white;
       font-weight: bold; 
     }
@@ -291,7 +291,7 @@
       background-color:#FFD800;
       border: none;
       height: 7vh;
-      font-size: 18px;
+      font-size: 14px;
       font-weight: bold; 
     }
     #bottom_button2{
@@ -299,7 +299,7 @@
       border-radius: 80px;
       background-color: white;
       height: 7vh;
-      font-size: 18px;
+      font-size: 14px;
       font-weight: bold; 
       float: right;
     }
