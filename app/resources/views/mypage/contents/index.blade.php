@@ -17,7 +17,7 @@
                 <div class="col">
                         <select name="content_status" placeholder=""　id="select1a" class="form-control">
                         <option value="1">受付中</option>
-                        <option value="2">申請が届きました</option>
+                        <option value="2">新着あり</option>
                         <option value="3">代行依頼中</option>
                         <option value="4">依頼完了</option>
                         </select>
