@@ -31,9 +31,7 @@
     </h3>
     <div id="centre_border-left"></div>
     <div id="centre_border-right"></div>
-    {{-- <div id="centre_message2">
-      新着の依頼
-    </div> --}}
+
     <div id="contents">
       <div class="row w-100">
     @foreach($contents as $item)
@@ -253,25 +251,25 @@
     #bottom_message1{
       text-align: center;
       color:white;
-      font-size: 50px;
+      font-size: 40px;
       font-weight: bold; 
       display:block;
     }
     #bottom_message2{
       text-align: center;
-      font-size: 25px;
+      font-size: 15px;
       color:white;
       font-weight: bold; 
     }
     #bottom_message3{
       text-align: center;
-      font-size: 30px;
+      font-size: 20px;
       color:white;
       font-weight: bold; 
     }
     #bottom_message4{
       text-align: center;
-      font-size: 30px;
+      font-size: 20px;
       color:white;
       font-weight: bold; 
     }
