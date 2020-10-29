@@ -1,11 +1,18 @@
 const latlngDis = document.getElementById('latlngDisplay');
-function initMap() {
+const GmapLink = document.getElementById('addressURL');
+console.log(GmapLink);
+const ArrayDate = GmapLink.value.split('/');
+console.log(ArrayDate);
+const endDate = ArrayDate[6].split(',');
+console.log(endDate);
+console.log(endDate[0].slice(1));
 
-  tokyo = { lat: 35.6803997, lng: 139.7690174 }
+function initMap() {
+  var latlng = new google.maps.LatLng(endDate[0].slice(1), endDate[1]);//中心の緯度, 経度
 
   map = new google.maps.Map(document.getElementById('map'), {
-    center: tokyo,
-    zoom: 17,
+    zoom: 17,//ズームの調整
+    center: latlng//上で設定した中心
   });
 
 }

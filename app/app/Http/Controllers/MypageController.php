@@ -10,7 +10,6 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 
 
-
 class MypageController extends Controller
 {
     
@@ -20,12 +19,15 @@ class MypageController extends Controller
     }
     public function index(Request $request)
     {
-        $user = Auth::user();
-        $contents_count = Content::where('helper_id', $user->id)->whereNotNull('value')->get();
+        $contents_count = Content::where('helper_id', Auth::user()->id)->whereNotNull('value')->get();
         $avg = collect($contents_count)->avg('value');
-        $contents = Content::where('owner_id', $user->id)->where('content_status', 2)->latest()->limit(3)->get();
-        $contentitems = ContentItem::where('user_id', $user->id)->latest()->whereHas('content', function($query)use($request){$query->where('report_status', 3);})->limit(3)->get();
-        return view('mypage.index',compact('avg','contents','contentitems'));
+        $contents = Content::where('owner_id', Auth::user()->id)->where('content_status', 2)->latest()->limit(3)->get();
+        $contentitems = ContentItem::where('user_id', Auth::user()->id)->latest()->whereHas('content', function($query)use($request){$query->where('report_status', 3);})->limit(3)->get();
+        return view('mypage.index')->with([
+                        'avg' => $avg,
+                        'contents' => $contents,
+                        'contentitems' => $contentitems,
+                        ]);
     }
 
     public function edit()
@@ -35,9 +37,10 @@ class MypageController extends Controller
 
     public function update(Request $request)
     {   
-        $user = Auth::user();
-        $user_data = User::find($user->id);
-        $user_data->update(['name'=>$request->name,'email'=>$request->email,'password'=>Hash::make($request->password)]);
+        $user_data = User::find(Auth::user()->id);
+        $user_data->update(['name'=>$request->name,
+                        'email'=>$request->email,
+                        'password'=>Hash::make($request->password)]);
         return redirect()->action('MypageController@index');
     }
 }

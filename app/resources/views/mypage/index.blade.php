@@ -12,7 +12,7 @@
     @else
     <h4 class="font-weight-bold text-center">あなたの代行評価は{{$avg}}です。</h4>
     @endif
-    <h3 class="font-weight-bold">マイデート新着一覧</h3>
+    <h3 class="font-weight-bold mt-5">マイデート新着一覧</h3>
     <div class="row">
       @foreach($contents as $item)
           <div class="col-xs-10 col-sm-6 col-md-4">
@@ -53,7 +53,7 @@
                       </div>
                           依頼作成日 {{$item->created_at->format('Y/m/d')}}
                                   <a href="{{ route('mypage.contents.helper', ['id' => $item->id]) }}" class="btn btn-success btn-lg w-100 mt-2"><font color=white>申請者リストを見る</font></a>
-                                  <form method="post" action="{{ route('mypage.contents.destroy', ['id' => $item->id]) }}">@method('DELETE')@csrf<input class='btn btn-danger btn-lg w-100 mt-2 d-block' type="submit" value="削除" ></form>
+                                  <form method="post" action="{{ route('mypage.contents.destroy', ['id' => $item->id]) }}">@method('DELETE')@csrf<input class='btn btn-danger btn-lg w-100 mt-2 d-block' type="submit" value="削除" onclick="return confirm('削除しますが、よろしいですか？')" ></form>
 
                   </div>
               </div>
@@ -61,7 +61,7 @@
           </div>
           @endforeach
     </div>
-    <h3 class="font-weight-bold">デート一覧</h3>
+    <h3 class="font-weight-bold mt-5">デート一覧</h3>
     <div class="row">
     @foreach($contentitems as $item)
         <div class="col-xs-10 col-sm-6 col-md-4 mb-3">
