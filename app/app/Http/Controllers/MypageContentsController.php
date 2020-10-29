@@ -90,20 +90,25 @@ class MypageContentsController extends Controller
         //post　マイデート編集
         public function update(Request $request)
         {
-
             //デート内容の編集
             if($request->type == 'content') {
                     $content = Content::find($request->id);
-                    $form = $request->all();
-                    unset($form['_token']);
-                    $content->fill($form)->save();
-                    return redirect()->action('MypageContentsController@index');
+                    $content->update(['title' => $request->title,
+                                    'price' => $request->price,
+                                    'placename' => $request->placename,
+                                    'prefectures' => $request->prefectures,
+                                    'order' => $request->order,
+                                    'address' => $request->address,
+                                    'gmap' => $request->gmap,]);
+                    return redirect()->action('MypageContentsController@index')->with('msg_success', '編集が完了しました');;
                 }
             //代行者確定
             elseif($request->type == 'helper') {
                     $contentitem =ContentItem::find($request->id);
                     $content = Content::find($contentitem->content_id);
-                    $content->update(['content_status'=>3,'report_status'=>3,'helper_id'=>$contentitem->user_id]);
+                    $content->update(['content_status'=>3,
+                                    'report_status'=>3,
+                                    'helper_id'=>$contentitem->user_id]);
                     return redirect()->action('MypageContentsController@index');
                 }
             
@@ -136,11 +141,10 @@ class MypageContentsController extends Controller
                 $content = Content::find($request->id);
                 $content->update(['value'=>$request->value]);
                 return redirect()->action('MypageContentsController@index')->with('msg_success', '代行の評価が完了しました');
-                }
-                else{
+            }else{
                 //戻る
                 return redirect()->action('MypageContentsController@index');
-                }
+            }
         }
 
         //get　マイデート詳細

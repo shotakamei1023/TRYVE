@@ -63,9 +63,7 @@
   height: 200px;
   width: 100%;
 }
-#latlngDisplay{
-  display:none;
-}
+
 #box{
   width: 70%;
   margin: 0 auto;

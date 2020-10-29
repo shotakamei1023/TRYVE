@@ -71,10 +71,10 @@
                                         </svg>{{$item->contentitem()->whereNull('deleted_at')->count()}}人
                                 </div>
                                 <a href="{{ route('mypage.contents.edit', ['id' => $item->id]) }}" class="btn btn-primary btn-lg w-100 mt-2"><font color=white>編集</font></a>
-                                <form method="post" action="{{ route('mypage.contents.destroy', ['id' => $item->id]) }}">@method('DELETE')@csrf<input class='btn btn-danger btn-lg w-100 mt-2 d-block' type="submit" value="削除" ></form>
+                                <form method="post" action="{{ route('mypage.contents.destroy', ['id' => $item->id]) }}">@method('DELETE')@csrf<input class='btn btn-danger btn-lg w-100 mt-2 d-block' type="submit" value="削除" onclick="return confirm('削除しますが、よろしいですか？')" ></form>
                         @elseif ($item->content_status == 2)
                                 <a href="{{ route('mypage.contents.helper', ['id' => $item->id]) }}" class="btn btn-success btn-lg w-100 mt-2"><font color=white>申請者リストを見る</font></a>
-                                <form method="post" action="{{ route('mypage.contents.destroy', ['id' => $item->id]) }}">@method('DELETE')@csrf<input class='btn btn-danger btn-lg w-100 mt-2 d-block' type="submit" value="削除" ></form>
+                                <form method="post" action="{{ route('mypage.contents.destroy', ['id' => $item->id]) }}">@method('DELETE')@csrf<input class='btn btn-danger btn-lg w-100 mt-2 d-block' type="submit" value="削除" onclick="return confirm('削除しますが、よろしいですか？')"></form>
                         @elseif ($item->content_status == 3)
                                 <div>{{$item->helper->name}}さんにデートをお願いしました。<br>レポートが提出されると<br>こちらに確認ボタンが表示されます。 </div>
                         @elseif ($item->content_status == 4)
@@ -90,13 +90,10 @@
         </div>
         </div>
         @endforeach
-          </div>
+        </div>
 <div class="d-flex justify-content-center">
     {{ $contents->links() }}
 </div>
-@endsection
 
-@section('create')
-        {{-- <button type="button" class="btn btn-success"><a href="{{ action('ContentsController@create') }}"><font color=white>依頼作成</font></a></button> --}}
 @endsection
 

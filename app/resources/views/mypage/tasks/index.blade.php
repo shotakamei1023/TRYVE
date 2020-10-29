@@ -74,7 +74,7 @@
                         </div>
 
                         @if($item->content->helper_id == null)
-                                <td><form method="post" action="{{ route('mypage.tasks.destroy', ['id' => $item->id]) }}">@method('DELETE')@csrf<input class='btn btn-danger' type="submit" value="削除" ></form></td>
+                                <td><form method="post" action="{{ route('mypage.tasks.destroy', ['id' => $item->id]) }}">@method('DELETE')@csrf<input class='btn btn-danger' type="submit" value="削除" onclick="return confirm('削除しますが、よろしいですか？')"></form></td>
                                 <td></td>
                         @elseif($item->content->helper_id == Auth::user()->id && $item->content->report_status == 3)
                                 <td><form method="post" action="{{ route('mypage.tasks.update', ['id' => $item->content->id,'type' => 'cancel']) }}">@method('PATCH')@csrf<input class='btn btn-warning' type="submit" value="中断" ></form></td>
