@@ -41,7 +41,7 @@ Route::get('/mypage/contents/{id}/helper', 'MypageContentsController@load')->nam
 
 Route::get('/mypage/tasks', 'MypageTasksController@index')->name('mypage.tasks.index');
 Route::post('/mypage/tasks/find', 'MypageTasksController@find')->name('mypage.tasks.find');
-Route::get('/mypage/tasks{id}/', 'MypageTasksController@edit')->name('mypage.tasks.edit');
+Route::get('/mypage/tasks/{id}/', 'MypageTasksController@edit')->name('mypage.tasks.edit');
 Route::patch('/mypage/tasks/{id}/review/', 'MypageTasksController@update')->name('mypage.tasks.update');
 Route::delete('/mypage/tasks/{id}/destroy', 'MypageTasksController@destroy')->name('mypage.tasks.destroy');
 Route::get('/mypage/tasks/{id}/show', 'MypageTasksController@show')->name('mypage.tasks.show');
