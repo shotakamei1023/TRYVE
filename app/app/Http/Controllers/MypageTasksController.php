@@ -47,7 +47,7 @@ class MypageTasksController extends Controller
                     $content->update(['content_status'=>4,
                                 'report_status'=>4,
                                 'report'=>$request->report]);
-                    return redirect()->action('MypageTasksController@index')->with('msg_success', '依頼作成が完了しました');
+                    return redirect()->action('MypageTasksController@index')->with('msg_success', 'レポート提出が完了しました');
                     }else{
                     //戻る
                     return redirect()->action('MypageTasksController@index');

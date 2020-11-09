@@ -1,9 +1,11 @@
 @extends('layouts.app')
-
+@section('title')
+<h1 class="font-weight-bold">レポート評価画面</h1>
+@endsection
 @section('content')
 <div class="card">
         <div class="card-header">
-                入力確認画面
+                レポート評価画面
         </div>
         <div class="card-body">
             <form action="{{ route('mypage.contents.review.put', ['id' => $content->id]) }}" method="post">
@@ -16,7 +18,8 @@
                 <div>依頼先の都道府県：{{ $content['prefectures'] }}<input name="prefectures" value="{{ $content['prefectures'] }}" type="hidden"></div>
                 <div>依頼先都道府県以下の住所：{{ $content['address'] }}<input name="address" value="{{ $content['address'] }}" type="hidden"></div>
                 <div>レポートの内容：{{ $content['report'] }}<input name="report" value="{{ $content['report'] }}" type="hidden"></div>
-                <div><a href={{ $content['gmap'] }} target="_blank" class="btn btn-outline-info"><input name="gmap" value="{{ $content['gmap'] }}" type="hidden">依頼先の住所をGoogoleMapで開く</a></div>
+                <div id="map"></div>
+                <div><a href={{ $content['gmap'] }} target="_blank" class="btn btn-outline-info" id=GmapLink><input name="gmap" value="{{ $content['gmap'] }}" type="hidden">依頼先の住所をGoogoleMapで開く</a></div>
                 <div>
                         <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="value" value=5>
@@ -43,5 +46,15 @@
                 <input class="btn btn-primary mt-2 ml-5" type="submit" name="action" value="レポートの評価をする">
         </div>
 </div>
+
+<style>
+#map{
+    height: 200px;
+    width: 100%;
+}
+</style>
+<script src="{{ asset('/assets/js/googlemap_api.LinkDestination.js') }}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_api') }}&callback=initMap"></script>
+
 @endsection
 

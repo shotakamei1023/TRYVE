@@ -46,7 +46,7 @@
                         </tr>
                          <tr>
                         <td>報酬</td>
-                        <td>{{$content->price}}</td>
+                        <td>{{$content->price}}円</td>
                         </tr>
                         <tr>
                         <td>地図</td>
@@ -77,7 +77,6 @@
     height: 200px;
     width: 100%;
 }
-
 </style>
 <script src="{{ asset('/assets/js/googlemap_api.LinkDestination.js') }}"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_api') }}&callback=initMap"></script>

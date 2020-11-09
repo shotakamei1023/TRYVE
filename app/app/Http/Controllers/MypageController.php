@@ -32,7 +32,8 @@ class MypageController extends Controller
 
     public function edit()
     {
-        return view('mypage.edit');
+        $user = User::find(Auth::user()->id);
+        return view('mypage.edit',compact('user'));
     }
 
     public function update(Request $request)
