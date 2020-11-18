@@ -11,7 +11,16 @@
                                 <input type="text" class="form-control" name="title" value="{{$title}}" placeholder="タイトル">
                         </div>
                         <div class="col-xs-10 col-sm-4 mb-2">
-                                <input type="text" class="form-control" name="prefectures" value="{{$prefectures}}" placeholder="都道府県">
+                                <select name="prefectures" class="form-control">
+                                        <option value="" style='display:none;'>選択してください</option>
+                                        @foreach(config('pref') as $index => $prefectures)
+                                            @if(!empty(($_POST["prefectures"])) && $_POST["prefectures"] == $prefectures)
+                                                <option class="form-control" value="{{$prefectures}}" selected>{{$prefectures}}</option>
+                                            @else
+                                                <option class="form-control" value="{{$prefectures}}">{{$prefectures}}</option>
+                                            @endif
+                                        @endforeach
+                                </select>
                         </div>
                         <div class="col-xs-10 col-sm-4 mb-2">
                                 <input type="number" class="form-control" name="price" value="{{$price}}" placeholder="報酬">

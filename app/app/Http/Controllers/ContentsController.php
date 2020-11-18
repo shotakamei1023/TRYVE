@@ -12,7 +12,7 @@ class ContentsController extends Controller
 {
 
     //get　デート一覧
-    public function index(Request $request)
+    public function index()
     {
         $contents = Content::whereNull('helper_id')->latest()->paginate(6);
         return view('contents.index')->with([
@@ -116,16 +116,16 @@ class ContentsController extends Controller
     }    
 
     //get　デート詳細
-    public function show(Request $request)
+    public function show($id)
     {
-        $content = Content::find($request->id);
+        $content = Content::find($id);
         return view('contents.show',compact('content'));
     }
 
     //post　代行申請(会員コンテンツ)
-    public function post(Request $request)
+    public function post($id)
     {
-        $content = Content::find($request->id);
+        $content = Content::find($id);
         $contentitem_query = ContentItem::where('user_id',Auth::user()->id)->where('content_id',$content->id)->get();
 
         if($content->owner_id == Auth::user()->id){
@@ -136,7 +136,7 @@ class ContentsController extends Controller
         }
         else
             $content->update(['content_status'=>2,'report_status'=>2]);
-            ContentItem::create(['user_id' => Auth::user()->id,'content_id' => $request->id]);
+            ContentItem::create(['user_id' => Auth::user()->id,'content_id' => $id]);
             return redirect()->action('ContentsController@index')->with('msg_success', '代行申請が完了しました');
     }
 }
